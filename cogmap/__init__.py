@@ -10,11 +10,15 @@ class C(BaseConstants):
     NAME_IN_URL = 'cogmap'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-    LANGUAGES = [
-        dict(name='english', label="I speak English"),
-        dict(name='french', label="Je parle français"),
-        dict(name='spanish', label="Hablo español"),
-        dict(name='finnish', label="Puhun suomea"),
+    CHOICES = [
+        dict(name='A', label="Ereignis A"),
+        dict(name='B', label="Ereignis B"),
+        dict(name='C', label="Ereignis C"),
+        dict(name='D', label="Ereignis D"),
+        dict(name='E', label="Ereignis E"),
+        dict(name='F', label="Ereignis F"),
+        dict(name='G', label="Ereignis G"),
+        dict(name='H', label="Ereignis H"),
     ]
 
 class Subsession(BaseSubsession):
@@ -29,30 +33,39 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     name = models.StringField()
     age = models.IntegerField()
-    english = models.BooleanField(blank=True)
-    french = models.BooleanField(blank=True)
-    spanish = models.BooleanField(blank=True)
-    finnish = models.BooleanField(blank=True)
+    A = models.BooleanField(blank=True)
+    B = models.BooleanField(blank=True)
+    C = models.BooleanField(blank=True)
+    D = models.BooleanField(blank=True)
+    E = models.BooleanField(blank=True)
+    F = models.BooleanField(blank=True)
+    G = models.BooleanField(blank=True)
+    H = models.BooleanField(blank=True)
     json = models.StringField()
     pass
 
 
 # PAGES
-class MyPage(Page):
-
+class Survey(Page):
     form_model = 'player'
-    form_fields = ['name', 'age', 'checklist']
+    form_fields = ['name','age']
+
+    pass
+
+class Selection(Page):
+    form_model = 'player'
+
     @staticmethod
     def get_form_fields(player: Player):
-        return [lang['name'] for lang in C.LANGUAGES]
+        return [choice['name'] for choice in C.CHOICES]
 
 
     @staticmethod
     def error_message(player: Player, values):
         # print('values is', values)
         num_selected = 0
-        for lang in C.LANGUAGES:
-            if values[lang['name']]:
+        for choice in C.CHOICES:
+            if values[choice['name']]:
                 num_selected += 1
         if num_selected < 1:
             return "You must select at least 1 language."
@@ -61,20 +74,20 @@ class MyPage(Page):
 class CogMap(Page):
     def js_vars(player):
         selection = []
-        if player.field_maybe_none('english') == True:
-            selection.append("english")
-        if player.field_maybe_none('french') == True:
-            selection.append("french")
-        if player.field_maybe_none('spanish') == True:
-            selection.append("spanish")
-        if player.field_maybe_none('finnish') == True:
-            selection.append("finnish")
+        for i in C.CHOICES:
+            y = i.get("name")
+            if player.field_maybe_none(y) == True:
+                selection.append(y)
+        # if player.field_maybe_none('A') == True:
+        #     selection.append("english")
+        # if player.field_maybe_none('french') == True:
+        #     selection.append("french")
+        # if player.field_maybe_none('spanish') == True:
+        #     selection.append("spanish")
+        # if player.field_maybe_none('finnish') == True:
+        #     selection.append("finnish")
 
         return dict(
-            english = player.field_maybe_none('english'),
-            french = player.field_maybe_none('french'),
-            spanish = player.field_maybe_none('spanish'),
-            finnish = player.field_maybe_none('finnish'),
             selection = selection
         )
     form_model = 'player'
@@ -90,4 +103,4 @@ class Results(Page):
     pass
 
 
-page_sequence = [MyPage,  CogMap]
+page_sequence = [Survey, Selection,  CogMap]

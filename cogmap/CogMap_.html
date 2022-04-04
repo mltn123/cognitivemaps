@@ -64,8 +64,7 @@
             demoNodes.push({
                 data: {
                     id: selection[i],
-                    name:selection[i],
-                    type: "node"
+                    name:selection[i]
                 }
             });
         }
@@ -90,27 +89,15 @@
             },
 
             {
-              selector: '[type="negative"]',
+              selector: 'edge',
               style: {
                 'curve-style': 'bezier',
                 'target-arrow-shape': 'triangle',
-                'width': 1,
-                'line-color': 'red',
-                'target-arrow-color': 'red',
-              },
-
-            },
-
-                        {
-              selector: '[type="positive"]',
-              style: {
-                'curve-style': 'bezier',
-                'target-arrow-shape': 'triangle',
-                'width': 1,
+                'width': 5,
                 'line-color': 'green',
                 'target-arrow-color': 'green',
-              },
 
+              },
             },
 
             // some style for the extension
@@ -204,30 +191,24 @@
 
 
 
-    var handles = new CytoscapeEdgeEditation;
-    handles.init(cy);
-    handles.registerHandle({
-          positionX: "right",          //horizontal position of the handle  (left | center | right)
-          positionY: "top",        //vertical position of the handle  (top | center | bottom)
-          color: "green",             //color of the handle
-          type: "positive",                   //stored as data() attribute, can be used for styling
-          single: false,               //wheter only one edge of this type can start from same node (default false)
-          nodeTypeNames: ["node"],    //which types of nodes will contain this handle
-          noMultigraph: false         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
-    });
-     handles.registerHandle({
-          positionX: "right",          //horizontal position of the handle  (left | center | right)
-          positionY: "bottom",        //vertical position of the handle  (top | center | bottom)
-          color: "red",             //color of the handle
-          type: "negative",                   //stored as data() attribute, can be used for styling
-          single: false,               //wheter only one edge of this type can start from same node (default false)
-          nodeTypeNames: ["node"],    //which types of nodes will contain this handle
-          noMultigraph: false         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
-    });
+
+        var eh = cy.edgehandles(defaults);
+        eh.enableDrawMode();
+
+
+
+
+        cy.on('ehstart', function(e){
+            started = true;
+        });
+
+       cy.on('ehstop', function(){
+          started = false;
+        });
+
 
         cy.on('click', 'edge', function (e) {
             var ele = e.target;
-            console.log(ele)
             weight = ele.data().weight
             if (Math.abs(weight) <= 10){
               if (weight >= 0) {
@@ -246,6 +227,35 @@
                }
               }
             ele.style({ 'width': Math.abs(ele.data().weight) });
+        });
+
+        cy.on('cxttap','edge', function (e) {
+            var ele = e.target;
+            console.log(ele)
+            weight = ele.data().weight
+            if (weight >= 0){
+                ele.data('weight', -weight)
+                ele.style({ 'line-color': 'red' });
+                ele.style({ 'target-arrow-color': 'red' });
+            }
+            else{
+                ele.data('weight', weight * -1)
+                ele.style({ 'line-color': 'green' });
+                ele.style({ 'target-arrow-color': 'green' });
+            }
+
+        });
+
+       var handles = new CytoscapeEdgeEditation;
+       handles.init(cy);
+       handles.registerHandle({
+            positionX: "left",
+            positionY: "center",
+            color: "#48FF00",
+            type: "node",
+            single: true,
+            nodeTypeNames: ["type2"]
+            noMultigraph: false
         });
 
 
