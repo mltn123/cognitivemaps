@@ -1,0 +1,16 @@
+{{ block title }}
+    Page title
+{{ endblock }}
+{{ block content }}
+
+<p>What languages do you speak? Select all that apply.</p>
+{{ for field in C.LANGUAGES }}
+<label>
+    <input type="checkbox" name="{{ field.name }}" value="1">
+    {{ field.label }}
+</label><br>
+{{ endfor }}
+
+    {{ next_button }}
+
+{{ endblock }}
