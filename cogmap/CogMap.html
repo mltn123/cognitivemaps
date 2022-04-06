@@ -7,31 +7,33 @@
 
   <head>
     <title></title>
-
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-
+    <link rel="stylesheet" href={% static "jquery-ui.css" %}>
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
     <!-- for testing with local version of cytoscape.js -->
     <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cytoscape-edgehandles@4.0.1/cytoscape-edgehandles.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/cytoscape-cxtmenu@3.4.0/cytoscape-cxtmenu.min.js"></script>
 
-    <!-- for popper handles -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/cytoscape-popper@2.0.0/cytoscape-popper.js"></script>
     <script src={% static "CytoscapeEdgeEditation.js" %}></script>
+   <script src={% static "cytoscape-context-menus.js" %}></script>
+   <script src={% static "jquery-3.6.0.min.js" %}></script>
+   <script src={% static "jquery-ui.min.js" %}></script>
+
+
     <style>
+      #dialog {
+      display:none;
+       }
       body {
         font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
         font-size: 14px;
       }
         #cy {
           width: 1080px;
-          height: 600px;
+          height: 500px;
           display: block;
+
         }
 
       h1 {
@@ -48,6 +50,60 @@
         border-radius: 20px;
         z-index: 9999;
       }
+      .cy-context-menus-cxt-menu {
+    display:none;
+    z-index: 1000;
+    position:absolute;
+    border:1px solid #A0A0A0;
+    padding: 0;
+    margin: 0;
+    width:auto;
+}
+
+.cy-context-menus-cxt-menuitem {
+    display:block;
+    width: 100%;
+    padding: 3px 20px;
+    position:relative;
+    margin:0;
+    background-color:#f8f8f8;
+    font-weight:normal;
+    font-size: 12px;
+    white-space:nowrap;
+    border: 0;
+    text-align: left;
+}
+
+.cy-context-menus-cxt-menuitem:enabled {
+    color: #000000;
+}
+
+.cy-context-menus-ctx-operation:focus {
+  outline: none;
+}
+
+.cy-context-menus-cxt-menuitem:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0B9BCD;
+    background-image: none;
+    cursor: pointer;
+}
+
+.cy-context-menus-cxt-menuitem[content]:before {
+    content:attr(content);
+}
+
+.cy-context-menus-divider {
+  border-bottom:1px solid #A0A0A0;
+}
+
+.cy-context-menus-submenu-indicator {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
     </style>
 
     <script>
@@ -55,6 +111,7 @@
       document.addEventListener('DOMContentLoaded', function(){
 
         let selection = js_vars.selection;
+
 
         var demoNodes = [];
         var demoEdges = [];
@@ -71,13 +128,14 @@
         }
 
 
+
         var cy = window.cy = cytoscape({
           container: document.getElementById('cy'),
 
           layout: {
             name: 'grid',
-            rows: 2,
-            cols: 2
+            rows: 4,
+            cols: 4
           },
 
           style: [
@@ -181,27 +239,6 @@
           }
         });
 
-        let defaults = {
-          canConnect: function( sourceNode, targetNode ){
-            // whether an edge can be created between source and target
-            return !sourceNode.same(targetNode); // e.g. disallow loops
-          },
-          edgeParams: function( sourceNode, targetNode )
-          {
-            return {
-                  data: { weight: 1 },
-                  style: { 'width': 1 },
-                 }
-           },
-
-          hoverDelay: 150, // time spent hovering over a target node before it is considered selected
-          snap: true, // when enabled, the edge can be drawn by just moving close to a target node (can be confusing on compound graphs)
-          snapThreshold: 50, // the target node must be less than or equal to this many pixels away from the cursor/finger
-          snapFrequency: 15, // the number of times per second (Hz) that snap checks done (lower is less expensive)
-          noEdgeEventsInDraw: true, // set events:no to edges during draws, prevents mouseouts on compounds
-          disableBrowserGestures: true // during an edge drawing gesture, disable browser gestures such as two-finger trackpad swipe and pinch-to-zoom
-        };
-
 
 
     var handles = new CytoscapeEdgeEditation;
@@ -233,47 +270,144 @@
               if (weight >= 0) {
                 ele.data('weight', weight + 1)
                }
-               else {
-                ele.data('weight', weight - 1)
-               }
             }
             if (Math.abs(weight) >= 10){
                 if (weight > 0) {
                 ele.data('weight', 1)
-               }
-               else {
-                ele.data('weight',  -1)
                }
               }
             ele.style({ 'width': Math.abs(ele.data().weight) });
         });
 
 
+        var contextMenu = cy.contextMenus({
+          evtType: 'cxttap',
+          menuItems: [
+            {
+              id: 'remove',
+              content: 'Beziehung Löschen',
+              tooltipText: 'Beziehung Löschen',
+              selector: 'edge',
+              onClickFunction: function (event) {
+                var target = event.target || event.cyTarget;
+                removed = target.remove();
 
-    document.getElementById('json').value = JSON.stringify(cy.json());
+                contextMenu.showMenuItem('undo-last-remove');
+              },
+              hasTrailingDivider: true
+            },
+            {
+              id: 'undo-last-remove',
+              content: 'Löschen rückgängig machen',
+              selector: 'edge',
+              show: false,
+              coreAsWell: true,
+              onClickFunction: function (event) {
+                if (removed) {
+                  removed.restore();
+                }
+                contextMenu.hideMenuItem('undo-last-remove');
+              },
+              hasTrailingDivider: true
+            },
+            {
+              id: 'connector',
+              content: 'Konnektor Ändern',
+              tooltipText: 'Konnektor Ändern',
+              selector: 'edge',
+              hasTrailingDivider: true,
+               submenu: [
+                    {
+                      id: 'good-begets-good',
+                      content: 'good-begets-good',
+                      tooltipText: 'good-begets-good',
+                      onClickFunction: function (event) {
+                        var target = event.target || event.cyTarget;
+                        target.data('connector', "good-begets-good")
+                      },
+                    },
+                    {
+                      id: 'fixed-pie',
+                      content: 'Fixed Pie',
+                      tooltipText: 'Fixed Pie',
+                      onClickFunction: function (event) {
+                        var target = event.target || event.cyTarget;
+                        target.data('connector', "fixed pie")
+                      },
+                     },
+                      {
+                      id: 'mangel',
+                      content: 'Mangel erhöht die Preise',
+                      tooltipText: 'Mangel erhöht die Preise',
+                      onClickFunction: function (event) {
+                        var target = event.target || event.cyTarget;
+                        target.data('connector', "mangel")
+                      },
+                     },
+                      {
+                      id: 'missmanagement',
+                      content: 'Missmanagement erhöht die Preise',
+                      tooltipText: 'Missmanagement erhöht die Preise',
+                      onClickFunction: function (event) {
+                        var target = event.target || event.cyTarget;
+                        target.data('connector', "missmanagement")
+                      },
+                     },
+                      {
+                      id: 'bereicherung',
+                      content: 'Höhere Preise dienen der Bereicherung',
+                      tooltipText: 'Höhere Preise dienen der Bereicherung',
+                      onClickFunction: function (event) {
+                        var target = event.target || event.cyTarget;
+                        target.data('connector', "bereicherung")
+                      },
+                    },
+                  ],
+            },
+          ]
+        });
+
       });
+
 
 
     </script>
   </head>
 
+
   <body>
     <h1>Cognitive Map demo
     </h1>
+
+<div id="Dialog" title="Konnektor Wählen">
+
+ <div>
+        <label for="connectors">Select One</label><br/>
+        <input type="radio" name="add" class="connectors", value="gbg">good-begets-good</input><br/>
+        <input type="radio" name="add" class="connectors", value="fixedpie">fixed pie</input>
+    </div>
+
+</div>
 
     <div id="cy"></div>
 
 
 
+
+
   </body>
 
-<input type='hidden' name='json' id='json'}/>
+<input type='' name='json' id='json'}/>
 
 {{ formfield_errors 'json' }}
 </html>
 
+<script>
+function saveFunction(){
+     document.getElementById('json').value = JSON.stringify(cy.json());
+}
+</script>
 
-
-    {{ next_button }}
+<button name="next" value="True" onclick="saveFunction()">Abschließen</button>
 
 {{ endblock }}

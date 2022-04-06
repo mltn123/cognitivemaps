@@ -299,26 +299,50 @@
                 e.stopImmediatePropagation();
             }
         },
+
         _mouseUp: function(){
+            if (!$('#Dialog').dialog('isOpen')) {
             if(this._hover){
                 if(this._hit){
                     var edgeToRemove = this._checkSingleEdge(this._hit.handle, this._dragging);
                     if(edgeToRemove){
                         this._cy.remove("#"+edgeToRemove.id());
                     }
+
+
+
+                    $("#Dialog").dialog("open")
+
                     var edge = this._cy.add({
                         data: {
-                            source: this._dragging.id(),
-                            target: this._hover.id(),
-                            type: this._hit.handle.type,
-                            weight: 1
+                            source:  this._dragging.id(),
+                            target:  this._hover.id(),
+                            type:    this._hit.handle.type,
+                            weight: 1,
+                            connector: "none"
                         }
                     });
-                    this._initEdgeEvents(edge);
+
+                   $('#Dialog').on("dialogclose",  function(){
+                   conn_val = $('input[name=add]:checked', '#Dialog').val()
+                   ele = cy.getElementById(edge.id())
+                   console.log(ele.data())
+                   //console.log(ele.data())
+                   console.log(conn_val)
+                   ele.data('connector', conn_val )
+                    });
+                   this._initEdgeEvents(edge);
+
                 }
+
+
             }
+            }
+
             this._dragging = false;
             this._clearArrow();
+
+
         },
         _mouseMove: function(e){
             if(this._hover){
@@ -362,10 +386,11 @@
         _initEdgeEvents: function(edge){
             var self = this;
             edge.on("cxttap", function(){
-                if(self.__lastClick && Date.now() - self.__lastClick < self.DOUBLE_CLICK_INTERVAL ){
-                    self._removeEdge(this);
-                }
-                self.__lastClick = Date.now();
+                  // self._removeEdge(this);
+                //if(self.__lastClick && Date.now() - self.__lastClick < self.DOUBLE_CLICK_INTERVAL ){
+
+                //}
+                //self.__lastClick = Date.now();
             })
         },
         _hitTestHandles: function(e){
@@ -477,5 +502,33 @@
             }
         }
     });
+
+
+
+$(function() {
+  $("#Dialog").dialog({
+    autoOpen: false,
+    height: 300,
+    width: 300,
+    modal: true,
+ buttons: {
+            OK: function() {
+                $(this).dialog('close');
+            }
+        },
+        draggable: false,
+        beforeClose: function( event, ui ) {
+            if ( !$("input:radio[name='add']").is(":checked")) {
+            event.preventDefault();
+                $( "[for=connectors]" ).addClass( "invalid" );
+            }
+            else {
+            console.log($('input[name=add]:checked', '#Dialog').val())
+            }
+        },
+  });
+
+});
+
 
 })(this);
