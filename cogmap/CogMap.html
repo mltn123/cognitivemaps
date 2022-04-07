@@ -22,9 +22,6 @@
 
 
     <style>
-      #dialog {
-      display:none;
-       }
       body {
         font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
         font-size: 14px;
@@ -139,6 +136,7 @@
           },
 
           style: [
+
             {
               selector: 'node[name]',
               style: {
@@ -370,8 +368,11 @@
       });
 
 
-
     </script>
+<script>
+
+
+</script>
   </head>
 
 
@@ -383,8 +384,18 @@
 
  <div>
         <label for="connectors">Select One</label><br/>
-        <input type="radio" name="add" class="connectors", value="gbg">good-begets-good</input><br/>
-        <input type="radio" name="add" class="connectors", value="fixedpie">fixed pie</input>
+        <div id ="gbg", style="display: none;">Gute Dinge sind mit guten verbunden, schlechte mit schlechten<br>
+        Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
+        </div>
+        <div id ="fixedpie", style="display: none;">Es ist nicht genug für alle da<br>
+        Wenn einige mehr kriegen, ist weniger für die anderen da. Dann wird es teuer.
+        </div>
+        <div id="slider"></div>
+        <input type="radio" name="add" class="connectors", value="gbg">"good-begets-good"</input><br/>
+        <input type="radio" name="add" class="connectors", value="fixedpie">fixed pie</input><br/>
+        <input type="radio" name="add" class="connectors", value="mangel">Mangel erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="missmanagement">Missmanagement erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
     </div>
 
 </div>

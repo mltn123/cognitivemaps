@@ -291,56 +291,56 @@
         },
         _mouseDown: function(e) {
             this._hit = this._hitTestHandles(e);
-
             if(this._hit){
                 this._lastClick = Date.now();
-                this._dragging = this._hover;
+                this._dragging= this._hover;
                 this._hover = null;
                 e.stopImmediatePropagation();
             }
         },
 
         _mouseUp: function(){
-            if (!$('#Dialog').dialog('isOpen')) {
+           if (!$('#Dialog').dialog('isOpen')) {
             if(this._hover){
                 if(this._hit){
                     var edgeToRemove = this._checkSingleEdge(this._hit.handle, this._dragging);
                     if(edgeToRemove){
                         this._cy.remove("#"+edgeToRemove.id());
                     }
+                    thatdrag = this._dragging.id()
 
 
-
-                    $("#Dialog").dialog("open")
-
-                    var edge = this._cy.add({
+                    //$("#Dialog").dialog("open")
+                    $("#Dialog").dialog("open").on("dialogclose", function(e){
+                    console.log("test")
+                     var edge =  this._cy.add({
                         data: {
-                            source:  this._dragging.id(),
+                            source:  thatdrag,
                             target:  this._hover.id(),
                             type:    this._hit.handle.type,
-                            weight: 1,
-                            connector: "none"
+                            weight:    $('#slider').slider('value'),
+                            connector: $('input[name=add]:checked', '#Dialog').val()
+                        },
+                        style: {
+                            width: $('#slider').slider('value'),
                         }
                     });
+                      //console.log("test")
 
-                   $('#Dialog').on("dialogclose",  function(){
-                   conn_val = $('input[name=add]:checked', '#Dialog').val()
-                   ele = cy.getElementById(edge.id())
-                   console.log(ele.data())
-                   //console.log(ele.data())
-                   console.log(conn_val)
-                   ele.data('connector', conn_val )
-                    });
-                   this._initEdgeEvents(edge);
+                      //thatdrag = null;
+                      this._initEdgeEvents(edge);
+                        e.stopImmediatePropagation();
+                   }.bind(this));
+
 
                 }
-
-
-            }
-            }
+              }
+           }
 
             this._dragging = false;
             this._clearArrow();
+
+
 
 
         },
@@ -385,12 +385,12 @@
         },
         _initEdgeEvents: function(edge){
             var self = this;
-            edge.on("cxttap", function(){
-                  // self._removeEdge(this);
-                //if(self.__lastClick && Date.now() - self.__lastClick < self.DOUBLE_CLICK_INTERVAL ){
+            edge.on("", function(){
+                   self._removeEdge(this);
+                if(self.__lastClick && Date.now() - self.__lastClick < self.DOUBLE_CLICK_INTERVAL ){
 
-                //}
-                //self.__lastClick = Date.now();
+                }
+                self.__lastClick = Date.now();
             })
         },
         _hitTestHandles: function(e){
@@ -504,12 +504,11 @@
     });
 
 
-
 $(function() {
   $("#Dialog").dialog({
     autoOpen: false,
-    height: 300,
-    width: 300,
+    height: 'auto',
+    width: 'auto',
     modal: true,
  buttons: {
             OK: function() {
@@ -522,13 +521,30 @@ $(function() {
             event.preventDefault();
                 $( "[for=connectors]" ).addClass( "invalid" );
             }
-            else {
-            console.log($('input[name=add]:checked', '#Dialog').val())
-            }
         },
   });
+
+$('input[name="add"]:radio').change(function () {
+    $('#gbg').toggle(this.value == 'gbg');
+    $('#fixedpie').toggle(this.value == 'fixedpie');
+});
+
+$("#slider").slider({
+range: "max",
+min: 1, // min value
+max: 10, // max value
+step: 1,
+value: 5, // default value of slider
+slide: function(event, ui) {
+    $("#amount").val(ui.value);
+}
+});
+
+
+
 
 });
 
 
 })(this);
+
