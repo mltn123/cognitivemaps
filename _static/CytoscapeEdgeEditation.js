@@ -185,13 +185,13 @@
             }.bind(this));
 
             this._resizeCanvas();
-
             this._arrowEnd = this._cy.add({
                 group: "nodes",
                 data: {
                     "id": this.ARROW_END_ID,
                     "position": {x: 150,y:150}
                 }
+
             });
 
             this._arrowEnd.css({
@@ -311,8 +311,9 @@
 
 
                     //$("#Dialog").dialog("open")
+                    if (this._hover.id() != 'ARROW_END_ID') {
                     $("#Dialog").dialog("open").on("dialogclose", function(e){
-                    console.log("test")
+                    console.log(this._hover.id())
                      var edge =  this._cy.add({
                         data: {
                             source:  thatdrag,
@@ -322,16 +323,33 @@
                             connector: $('input[name=add]:checked', '#Dialog').val()
                         },
                         style: {
-                            width: $('#slider').slider('value'),
+                            //width: $('#slider').slider('value'),
                         }
                     });
                       //console.log("test")
 
                       //thatdrag = null;
                       this._initEdgeEvents(edge);
-                        e.stopImmediatePropagation();
+                      var layout = cy.layout({
+                                name: 'avsdf',
+                                refresh: 30,
+                                // Whether to fit the network view after when done
+                                fit: true,
+                                // Padding on fit
+                                padding: 200,
+                                // Prevent the user grabbing nodes during the layout (usually with animate:true)
+                                ungrabifyWhileSimulating: false,
+                                // Type of layout animation. The option set is {'during', 'end', false}
+                                animate: 'end',
+                                // Duration for animate:end
+                                animationDuration: 500,
+                                // How apart the nodes are
+                                nodeSeparation: 110
+                        });
+                      layout.run();
+                      e.stopImmediatePropagation();
                    }.bind(this));
-
+                    }
 
                 }
               }
@@ -525,8 +543,8 @@ $(function() {
   });
 
 $('input[name="add"]:radio').change(function () {
-    $('#gbg').toggle(this.value == 'gbg');
-    $('#fixedpie').toggle(this.value == 'fixedpie');
+    $('#gbg').toggle(this.value == 'good-begets-good');
+    $('#fixedpie').toggle(this.value == 'fixed-pie');
 });
 
 $("#slider").slider({

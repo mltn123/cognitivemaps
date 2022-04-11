@@ -11,6 +11,7 @@
     <link rel="stylesheet" href={% static "jquery-ui.css" %}>
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
+
     <!-- for testing with local version of cytoscape.js -->
     <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
 
@@ -19,6 +20,11 @@
    <script src={% static "cytoscape-context-menus.js" %}></script>
    <script src={% static "jquery-3.6.0.min.js" %}></script>
    <script src={% static "jquery-ui.min.js" %}></script>
+      	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
+
+		<script src="https://unpkg.com/layout-base/layout-base.js"></script>
+      		<script src="https://unpkg.com/avsdf-base/avsdf-base.js"></script>
+      <script src={% static "cytoscape-avsdf.js" %}></script>
 
 
     <style>
@@ -27,12 +33,13 @@
         font-size: 14px;
       }
         #cy {
-          width: 1080px;
-          height: 500px;
-          display: block;
+          width: 80vw;
+          height: 50vw;
+
 
         }
-
+        #parent { white-space: nowrap; }
+        .child { display: inline-block; }
       h1 {
         opacity: 0.5;
         font-size: 1em;
@@ -127,12 +134,26 @@
 
 
         var cy = window.cy = cytoscape({
+
           container: document.getElementById('cy'),
 
           layout: {
-            name: 'grid',
-            rows: 4,
-            cols: 4
+                name: 'avsdf',
+                avoidOverlap: true,
+                refresh: 30,
+                // Whether to fit the network view after when done
+                fit: true,
+                // Padding on fit
+                padding: 10,
+                // Prevent the user grabbing nodes during the layout (usually with animate:true)
+                ungrabifyWhileSimulating: false,
+                // Type of layout animation. The option set is {'during', 'end', false}
+                animate: 'end',
+                // Duration for animate:end
+                animationDuration: 500,
+                // How apart the nodes are
+                nodeSeparation: 110
+
           },
 
           style: [
@@ -140,8 +161,9 @@
             {
               selector: 'node[name]',
               style: {
-                'shape': 'square',
-                'content': 'data(name)'
+                'shape': 'hexagon',
+                'content': 'data(name)',
+                'font-size': '8vw '
               }
             },
 
@@ -153,11 +175,17 @@
                 'width': 1,
                 'line-color': 'red',
                 'target-arrow-color': 'red',
+                'width': 'data(weight)',
+                'label': 'data(connector)',
+                "text-rotation": "autorotate",
+                "text-margin-x": "0px",
+                "text-margin-y": "7vw",
+                'font-size': '5vw ',
               },
 
             },
 
-                        {
+             {
               selector: '[type="positive"]',
               style: {
                 'curve-style': 'bezier',
@@ -165,9 +193,22 @@
                 'width': 1,
                 'line-color': 'green',
                 'target-arrow-color': 'green',
+                'width': 'data(weight)',
+                'label': 'data(connector)',
+                "text-rotation": "autorotate",
+                "text-margin-x": "0px",
+                "text-margin-y": "-7vw",
+                 'font-size': '5vw ',
               },
 
+
             },
+              {
+              selector: "edge[label]",
+              css: {
+
+              }
+              },
 
             // some style for the extension
 
@@ -243,16 +284,16 @@
     handles.init(cy);
     handles.registerHandle({
           positionX: "right",          //horizontal position of the handle  (left | center | right)
-          positionY: "top",        //vertical position of the handle  (top | center | bottom)
+          positionY: "center",        //vertical position of the handle  (top | center | bottom)
           color: "green",             //color of the handle
           type: "positive",                   //stored as data() attribute, can be used for styling
           single: false,               //wheter only one edge of this type can start from same node (default false)
           nodeTypeNames: ["node"],    //which types of nodes will contain this handle
-          noMultigraph: false         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
+          noMultigraph: false,         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
     });
      handles.registerHandle({
-          positionX: "right",          //horizontal position of the handle  (left | center | right)
-          positionY: "bottom",        //vertical position of the handle  (top | center | bottom)
+          positionX: "left",          //horizontal position of the handle  (left | center | right)
+          positionY: "center",        //vertical position of the handle  (top | center | bottom)
           color: "red",             //color of the handle
           type: "negative",                   //stored as data() attribute, can be used for styling
           single: false,               //wheter only one edge of this type can start from same node (default false)
@@ -260,7 +301,7 @@
           noMultigraph: false         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
     });
 
-        cy.on('click', 'edge', function (e) {
+        cy.on('', 'edge', function (e) {
             var ele = e.target;
             console.log(ele)
             weight = ele.data().weight
@@ -330,7 +371,7 @@
                       tooltipText: 'Fixed Pie',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "fixed pie")
+                        target.data('connector', "fixed-pie")
                       },
                      },
                       {
@@ -339,7 +380,7 @@
                       tooltipText: 'Mangel erhöht die Preise',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "mangel")
+                        target.data('connector', "Mangel erhöht Preise")
                       },
                      },
                       {
@@ -348,7 +389,7 @@
                       tooltipText: 'Missmanagement erhöht die Preise',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "missmanagement")
+                        target.data('connector', "Missmanagement erhöht Preise")
                       },
                      },
                       {
@@ -357,13 +398,15 @@
                       tooltipText: 'Höhere Preise dienen der Bereicherung',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "bereicherung")
+                        target.data('connector', "Höhere Preise dienen Bereicherung")
                       },
                     },
                   ],
             },
           ]
         });
+
+
 
       });
 
@@ -377,25 +420,31 @@
 
 
   <body>
-    <h1>Cognitive Map demo
-    </h1>
+  <h1>    Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen. </h1>
 
 <div id="Dialog" title="Konnektor Wählen">
-
+<style>#slider {
+    width: 50%;
+    float :left;
+}
+label
+{
+    float : left;
+}</style>
  <div>
-        <label for="connectors">Select One</label><br/>
+     <label for="connectors"><b>Wählen Sie eine Art der Assoziation und die Stärke der Assoziation</b></label><br/>
         <div id ="gbg", style="display: none;">Gute Dinge sind mit guten verbunden, schlechte mit schlechten<br>
         Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
         </div>
         <div id ="fixedpie", style="display: none;">Es ist nicht genug für alle da<br>
         Wenn einige mehr kriegen, ist weniger für die anderen da. Dann wird es teuer.
         </div>
-        <div id="slider"></div>
-        <input type="radio" name="add" class="connectors", value="gbg">"good-begets-good"</input><br/>
-        <input type="radio" name="add" class="connectors", value="fixedpie">fixed pie</input><br/>
-        <input type="radio" name="add" class="connectors", value="mangel">Mangel erhöht die Preise</input><br/>
-        <input type="radio" name="add" class="connectors", value="missmanagement">Missmanagement erhöht die Preise</input><br/>
-        <input type="radio" name="add" class="connectors", value="bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
+     <label>schwach</label><div id="slider" ></div><label>stark</label> <br><br>
+        <input type="radio" name="add" class="connectors", value="good-begets-good">"good-begets-good"</input><br/>
+        <input type="radio" name="add" class="connectors", value="fixed-pie">fixed pie</input><br/>
+        <input type="radio" name="add" class="connectors", value="Mangel erhöht Preise">Mangel erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Missmanagement erhöht Preise">Missmanagement erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Höhere Preise dienen Bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
     </div>
 
 </div>
@@ -408,7 +457,7 @@
 
   </body>
 
-<input type='' name='json' id='json'}/>
+<input type='hidden' name='json' id='json'}/>
 
 {{ formfield_errors 'json' }}
 </html>

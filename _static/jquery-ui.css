@@ -653,6 +653,7 @@ button.ui-button::-moz-focus-inner {
 .ui-slider {
 	position: relative;
 	text-align: left;
+
 }
 .ui-slider .ui-slider-handle {
 	position: absolute;
@@ -662,6 +663,7 @@ button.ui-button::-moz-focus-inner {
 	cursor: default;
 	-ms-touch-action: none;
 	touch-action: none;
+
 }
 .ui-slider .ui-slider-range {
 	position: absolute;

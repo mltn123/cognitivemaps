@@ -11,14 +11,32 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     CHOICES = [
-        dict(name='A', label="Die Zentralbank erhöht den Leitzins."),
-        dict(name='B', label="Die Inflationsrate steigt"),
-        dict(name='C', label="Die Banken erhöhen die Kreditzinsen."),
-        dict(name='D', label="Die Löhne stagnieren."),
-        dict(name='E', label="Die Gewerkschaft fördert höhere Löhne."),
-        dict(name='F', label="Die Renten steigen."),
-        dict(name='G', label="Die Automobilhersteller machen Rekordgewinne. "),
-        dict(name='H', label="Die Bundesregierung führt eine CO2-Steuer ein"),
+        dict(name='Leitzins_erhoeht', label="Die Zentralbank erhöht den Leitzins."),
+        dict(name='Inflationsrate_steigt', label="Die Inflationsrate steigt"),
+        dict(name='Kreditzinsen', label="Die Banken erhöhen die Kreditzinsen."),
+        dict(name='Loehne_stagnieren', label="Die Löhne stagnieren."),
+        dict(name='Loehne_Gewerkschaft', label="Die Gewerkschaft fördert höhere Löhne."),
+        dict(name='Renten_steigen', label="Die Renten steigen."),
+        dict(name='Automobil_rekordgewinne', label="Die Automobilhersteller machen Rekordgewinne. "),
+        dict(name='CO2Steuer_einfuehrung', label="Die Bundesregierung führt eine CO2-Steuer ein"),
+        dict(name='Lebensmittelpreise_steigen', label="Die Lebensmittelpreise steigen."),
+        dict(name='Energiepreise_steigen', label="Die Energiepreise steigen"),
+        dict(name='Corona_gespart', label="Die Menschen haben in der Coronazeit viel gespart."),
+        dict(name='Arbeitslosigkeit_steigt', label="Die Arbeitslosigkeit ist gestiegen."),
+        dict(name='Arbeitslosengeld_erhoeht', label="Die Regierung erhöht das Arbeitslosengeld."),
+        dict(name='Managergehälter_steigen', label="Die Managergehälter sind gestiegen."),
+        dict(name='Verteidigungsetat_erhoeht', label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen"),
+        dict(name='Geld_verliert', label="Das Geld verliert an Wert."),
+        dict(name='Dollarkurs_steigt', label="Der Dollarkurs ist gestiegen."),
+        dict(name='Unwetter_schaden', label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht."),
+        dict(name='Borkenkaefer', label="Die Borkenkäferplage hat große Teile des Waldes vernichtet."),
+        dict(name='Staatsverschuldung_steigt', label="Die Staatsverschuldung ist gestiegen."),
+        dict(name='EU_greendeal', label="Die EU investiert Milliarden in den Green Deal."),
+        dict(name='Fluechtlinge', label="Es kommen immer mehr Flüchtlinge nach Deutschland."),
+        dict(name='Entsalzung', label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten."),
+        dict(name='Dax_steigt', label="Der Dax ist gestiegen."),
+        dict(name='Diaeten', label="Der Bundestag erhöht die Diäten."),
+        dict(name='Rohstoffe', label="In Zukunft werden Rohstoffe knapp."),
     ]
 
 class Subsession(BaseSubsession):
@@ -33,14 +51,36 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     name = models.StringField()
     age = models.IntegerField()
-    A = models.BooleanField(blank=True)
-    B = models.BooleanField(blank=True)
-    C = models.BooleanField(blank=True)
-    D = models.BooleanField(blank=True)
-    E = models.BooleanField(blank=True)
-    F = models.BooleanField(blank=True)
-    G = models.BooleanField(blank=True)
-    H = models.BooleanField(blank=True)
+    Leitzins_erhoeht = models.BooleanField(blank=True)
+    Inflationsrate_steigt = models.BooleanField(blank=True)
+    Kreditzinsen = models.BooleanField(blank=True)
+    Loehne_stagnieren = models.BooleanField(blank=True)
+    Loehne_Gewerkschaft = models.BooleanField(blank=True)
+    Renten_steigen = models.BooleanField(blank=True)
+    Automobil_rekordgewinne = models.BooleanField(blank=True)
+    CO2Steuer_einfuehrung = models.BooleanField(blank=True)
+    Lebensmittelpreise_steigen = models.BooleanField(blank=True)
+
+    Energiepreise_steigen = models.BooleanField(blank=True)
+    Corona_gespart  = models.BooleanField(blank=True)
+    Arbeitslosigkeit_steigt = models.BooleanField(blank=True)
+    Arbeitslosengeld_erhoeht = models.BooleanField(blank=True)
+    Managergehälter_steigen = models.BooleanField(blank=True)
+    Verteidigungsetat_erhoeht = models.BooleanField(blank=True)
+    Geld_verliert = models.BooleanField(blank=True)
+    Dollarkurs_steigt = models.BooleanField(blank=True)
+    Unwetter_schaden = models.BooleanField(blank=True)
+
+    Borkenkaefer = models.BooleanField(blank=True)
+    Staatsverschuldung_steigt  = models.BooleanField(blank=True)
+    EU_greendeal = models.BooleanField(blank=True)
+    Fluechtlinge = models.BooleanField(blank=True)
+    Entsalzung = models.BooleanField(blank=True)
+    Dax_steigt = models.BooleanField(blank=True)
+    Diaeten = models.BooleanField(blank=True)
+    Rohstoffe = models.BooleanField(blank=True)
+
+
     json = models.StringField()
     pass
 
@@ -67,8 +107,8 @@ class Selection(Page):
         for choice in C.CHOICES:
             if values[choice['name']]:
                 num_selected += 1
-        if num_selected != 4:
-            return "You must select precisely 4"
+        if num_selected != 8:
+            return "Wählen Sie bitte genau 8 Ereignisse"
     pass
 
 class CogMap(Page):
