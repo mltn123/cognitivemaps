@@ -49,8 +49,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    name = models.StringField()
-    age = models.IntegerField()
+    berufsfeld_andere = models.StringField(label="Andere Branche", blank=True)
+    alter = models.IntegerField()
     Leitzins_erhoeht = models.BooleanField(blank=True)
     Inflationsrate_steigt = models.BooleanField(blank=True)
     Kreditzinsen = models.BooleanField(blank=True)
@@ -71,6 +71,7 @@ class Player(BasePlayer):
     Dollarkurs_steigt = models.BooleanField(blank=True)
     Unwetter_schaden = models.BooleanField(blank=True)
 
+
     Borkenkaefer = models.BooleanField(blank=True)
     Staatsverschuldung_steigt  = models.BooleanField(blank=True)
     EU_greendeal = models.BooleanField(blank=True)
@@ -80,6 +81,18 @@ class Player(BasePlayer):
     Diaeten = models.BooleanField(blank=True)
     Rohstoffe = models.BooleanField(blank=True)
 
+    berufsfeld = models.StringField(
+        label = "Wählen Sie bitte die Branche ihres Berufes / ihres Studiums",
+        choices=["Bau, Architektur, Vermessung", "Dienstleistung", "Elektro", "Gesundheit", "IT, Computer",
+                 "Kunst, Kultur, Gestaltung", "Landwirtschaft, Natur, Umwelt", "Medien", "Metall, Maschinenbau",
+                 "Naturwissenschaften","Produktion, Fertigung", "Soziales, Pädagogik", "Technik, Technologiefelder",
+                 "Verkehr, Logistik", "Wirtschaft, Verwaltung", "Andere"]
+    )
+    geschlecht = models.StringField(
+        label = "Ihr Geschlecht",
+        choices=["männlich", "weiblich", "divers"],
+        widget=widgets.RadioSelect
+    )
 
     json = models.StringField()
     pass
@@ -88,7 +101,7 @@ class Player(BasePlayer):
 # PAGES
 class Survey(Page):
     form_model = 'player'
-    form_fields = ['name','age']
+    form_fields = ['berufsfeld','berufsfeld_andere','alter','geschlecht']
 
     pass
 
@@ -120,14 +133,6 @@ class CogMap(Page):
             x = i.get("label")
             if player.field_maybe_none(y) == True:
                 selection.append(x)
-        # if player.field_maybe_none('A') == True:
-        #     selection.append("english")
-        # if player.field_maybe_none('french') == True:
-        #     selection.append("french")
-        # if player.field_maybe_none('spanish') == True:
-        #     selection.append("spanish")
-        # if player.field_maybe_none('finnish') == True:
-        #     selection.append("finnish")
 
         return dict(
             selection = selection,

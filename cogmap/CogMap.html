@@ -114,7 +114,7 @@
 
       document.addEventListener('DOMContentLoaded', function(){
 
-        let selection = js_vars.selection;
+        let selection = js_vars.selection; //load previously selected events
 
 
         var demoNodes = [];
@@ -435,9 +435,10 @@ label
     float : left;
 }</style>
  <div>
-     <label for="connectors"><b>Wählen Sie eine Art der Assoziation und die Stärke der Assoziation</b></label><br/>
+     <label for="connectors"><b>Wählen Sie eine Art der Assoziation und die Stärke der Assoziation.</b></label><br/>
+        <p>Das Auswählen der Konnektoren offenbart Ihnen weitere Details und erklärungen.</p><br><br>
         <div id ="gbg", style="display: none;">Gute Dinge sind mit guten verbunden, schlechte mit schlechten<br>
-        Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
+            Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
         </div>
         <div id ="fixedpie", style="display: none;">Es ist nicht genug für alle da<br>
         Wenn einige mehr kriegen, ist weniger für die anderen da. Dann wird es teuer.

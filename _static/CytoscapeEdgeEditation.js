@@ -149,11 +149,11 @@
 
             this._cy.on("select", "node", this._redraw.bind(this))
 
-            this._cy.on("mousedown", "node", function(){
+            this._cy.on("vmousedown", "node", function(){
                 this._nodeClicked = true;
             }.bind(this));
 
-            this._cy.on("mouseup", "node", function(){
+            this._cy.on("vmouseup", "node", function(){
                 this._nodeClicked = false;
             }.bind(this));
 
