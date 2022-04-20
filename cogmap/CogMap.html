@@ -1,5 +1,5 @@
 {{ block title }}
-    Page title
+    Kognitive Karte
 {{ endblock }}
 {{ block content }}
 
@@ -136,6 +136,9 @@
         var cy = window.cy = cytoscape({
 
           container: document.getElementById('cy'),
+          wheelSensitivity: 0.5,
+            minZoom: 1,
+            maxZoom: 5,
 
           layout: {
                 name: 'avsdf',
@@ -152,7 +155,7 @@
                 // Duration for animate:end
                 animationDuration: 500,
                 // How apart the nodes are
-                nodeSeparation: 110
+                nodeSeparation: 105
 
           },
 
@@ -179,7 +182,7 @@
                 'label': 'data(connector)',
                 "text-rotation": "autorotate",
                 "text-margin-x": "0px",
-                "text-margin-y": "7vw",
+                "text-margin-y": "data(weight)",
                 'font-size': '5vw ',
               },
 
@@ -197,7 +200,7 @@
                 'label': 'data(connector)',
                 "text-rotation": "autorotate",
                 "text-margin-x": "0px",
-                "text-margin-y": "-7vw",
+                "text-margin-y": "data(weight)",
                  'font-size': '5vw ',
               },
 
@@ -380,7 +383,7 @@
                       tooltipText: 'Mangel erhöht die Preise',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "Mangel erhöht Preise")
+                        target.data('connector', "Mangel  erhöht  Preise")
                       },
                      },
                       {
@@ -389,7 +392,7 @@
                       tooltipText: 'Missmanagement erhöht die Preise',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "Missmanagement erhöht Preise")
+                        target.data('connector', "Missmanagement  erhöht  die  Preise")
                       },
                      },
                       {
@@ -398,7 +401,7 @@
                       tooltipText: 'Höhere Preise dienen der Bereicherung',
                       onClickFunction: function (event) {
                         var target = event.target || event.cyTarget;
-                        target.data('connector', "Höhere Preise dienen Bereicherung")
+                        target.data('connector', "Höhere  Preise  dienen  der  Bereicherung")
                       },
                     },
                   ],
@@ -439,12 +442,14 @@ label
         <div id ="fixedpie", style="display: none;">Es ist nicht genug für alle da<br>
         Wenn einige mehr kriegen, ist weniger für die anderen da. Dann wird es teuer.
         </div>
+     <br>
+     <br>
      <label>schwach</label><div id="slider" ></div><label>stark</label> <br><br>
         <input type="radio" name="add" class="connectors", value="good-begets-good">"good-begets-good"</input><br/>
         <input type="radio" name="add" class="connectors", value="fixed-pie">fixed pie</input><br/>
-        <input type="radio" name="add" class="connectors", value="Mangel erhöht Preise">Mangel erhöht die Preise</input><br/>
-        <input type="radio" name="add" class="connectors", value="Missmanagement erhöht Preise">Missmanagement erhöht die Preise</input><br/>
-        <input type="radio" name="add" class="connectors", value="Höhere Preise dienen Bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
+        <input type="radio" name="add" class="connectors", value="Mangel  erhöht  die Preise">Mangel erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Missmanagement  erhöht  die  Preise">Missmanagement erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Höhere  Preise  dienen  der  Bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
     </div>
 
 </div>

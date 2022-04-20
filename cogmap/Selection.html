@@ -1,17 +1,28 @@
 {{ block title }}
-    Page title
+    Ereignisse
 {{ endblock }}
 {{ block content }}
 
 
 
 <p>Wählen Sie bitte 8 Ereignisse die ihrer Meinung nach in einem Zusammenhang stehen</p>
+<p id="counter"></p>
 {{ for field in C.CHOICES }}
 <label>
     <input type="checkbox" name="{{ field.name }}" value="1">
+    <script>formInputs.{{ field.name }}.onchange = function () { checkboxes(); }</script>
     {{ field.label }}
 </label><br>
+<script>
+function checkboxes()
+{
+ document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length  +  " / " + 8
+}
 
+
+
+
+</script>
 {{ endfor }}
 
     {{ next_button }}

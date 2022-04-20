@@ -322,9 +322,6 @@
                             weight:    $('#slider').slider('value'),
                             connector: $('input[name=add]:checked', '#Dialog').val()
                         },
-                        style: {
-                            //width: $('#slider').slider('value'),
-                        }
                     });
                       //console.log("test")
 
@@ -348,6 +345,8 @@
                         });
                       layout.run();
                       e.stopImmediatePropagation();
+                      $("#slider").slider('value', 5);
+                      $("input:radio[name='add']").prop('checked', false);
                    }.bind(this));
                     }
 
