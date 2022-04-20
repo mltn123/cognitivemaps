@@ -5,12 +5,12 @@
 
 
 
-<p>Wählen Sie bitte 8 Ereignisse die ihrer Meinung nach in einem Zusammenhang stehen</p>
+<p>Wählen Sie bitte 8 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang stehen</p>
 <p id="counter"></p>
 {{ for field in C.CHOICES }}
 <label>
-    <input type="checkbox" name="{{ field.name }}" value="1">
     <script>formInputs.{{ field.name }}.onchange = function () { checkboxes(); }</script>
+    <input type="checkbox" name="{{ field.name }}" value="1">
     {{ field.label }}
 </label><br>
 <script>
