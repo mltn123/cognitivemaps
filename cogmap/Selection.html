@@ -9,9 +9,9 @@
 <p id="counter"></p>
 {{ for field in C.CHOICES }}
 <label>
-    <script>formInputs.{{ field.name }}.onchange = function () { checkboxes(); }</script>
     <input type="checkbox" name="{{ field.name }}" value="1">
     {{ field.label }}
+    <script>formInputs.{{ field.name }}.onchange = function () { checkboxes(); }</script>
 </label><br>
 <script>
 function checkboxes()
