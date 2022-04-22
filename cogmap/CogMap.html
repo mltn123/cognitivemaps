@@ -8,7 +8,7 @@
   <head>
     <title></title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href={% static "jquery-ui.css" %}>
+
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
 
@@ -20,7 +20,8 @@
    <script src={% static "cytoscape-context-menus.js" %}></script>
    <script src={% static "jquery-3.6.0.min.js" %}></script>
    <script src={% static "jquery-ui.min.js" %}></script>
-      	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
+      <link rel="stylesheet" href={% static "jquery-ui.css" %}>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
 
 		<script src="https://unpkg.com/layout-base/layout-base.js"></script>
       		<script src="https://unpkg.com/avsdf-base/avsdf-base.js"></script>
@@ -445,10 +446,17 @@ function generateRandomColor() {
 label
 {
     float : left;
-}</style>
+}
+
+.ui-widget-header {
+  color: white;
+  font-weight: bold;
+}
+
+</style>
  <div>
-     <label for="connectors"><b>Wählen Sie eine Art der Assoziation und die Stärke der Assoziation.</b></label><br/>
-        <p>Das Auswählen der Konnektoren offenbart Ihnen weitere Details und erklärungen.</p><br><br>
+     <label for="connectors"><b>Wählen Sie die Art und die Stärke der Verbindung.</b></label><br/>
+        <p>Das Auswählen der einzelnen Möglichkeiten offenbart Ihnen weitere Details und Erklärungen.</p><br><br>
         <div id ="gbg", style="display: none;">Gute Dinge sind mit guten verbunden, schlechte mit schlechten<br>
             Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
         </div>

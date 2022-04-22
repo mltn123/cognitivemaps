@@ -539,7 +539,7 @@ $(function() {
                 $( "[for=connectors]" ).addClass( "invalid" );
             }
         },
-  });
+    }).prev(".ui-dialog-titlebar").css("background","#17365c");;
 
 $('input[name="add"]:radio').change(function () {
     $('#gbg').toggle(this.value == 'good-begets-good');
