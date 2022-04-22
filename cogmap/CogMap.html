@@ -127,6 +127,9 @@
                     id: selection[i],
                     name:selection[i],
                     type: "node"
+                },
+                style: {
+                'backgroundColor': generateRandomColor(),
                 }
             });
         }
@@ -164,9 +167,9 @@
             {
               selector: 'node[name]',
               style: {
-                'shape': 'hexagon',
+                'shape': 'round-diamond',
                 'content': 'data(name)',
-                'font-size': '8vw '
+                'font-size': '8vw ',
               }
             },
 
@@ -174,16 +177,16 @@
               selector: '[type="negative"]',
               style: {
                 'curve-style': 'bezier',
-                'target-arrow-shape': 'triangle',
+                'target-arrow-shape': 'triangle-backcurve',
                 'width': 1,
-                'line-color': 'red',
-                'target-arrow-color': 'red',
-                'width': 'data(weight)',
+                'line-color': '#b14e46',
+                'target-arrow-color': '#b14e46',
+                'width': function( ele ){ return ele.data('weight') * 0.5; },
                 'label': 'data(connector)',
                 "text-rotation": "autorotate",
                 "text-margin-x": "0px",
                 "text-margin-y": "data(weight)",
-                'font-size': '5vw ',
+                'font-size': '5vw',
               },
 
             },
@@ -192,11 +195,11 @@
               selector: '[type="positive"]',
               style: {
                 'curve-style': 'bezier',
-                'target-arrow-shape': 'triangle',
+                'target-arrow-shape': 'triangle-backcurve',
                 'width': 1,
-                'line-color': 'green',
-                'target-arrow-color': 'green',
-                'width': 'data(weight)',
+                'line-color': '#7bae37',
+                'target-arrow-color': '#7bae37',
+                'width': function( ele ){ return ele.data('weight') * 0.5; },
                 'label': 'data(connector)',
                 "text-rotation": "autorotate",
                 "text-margin-x": "0px",
@@ -288,7 +291,7 @@
     handles.registerHandle({
           positionX: "right",          //horizontal position of the handle  (left | center | right)
           positionY: "center",        //vertical position of the handle  (top | center | bottom)
-          color: "green",             //color of the handle
+          color: "#7bae37",             //color of the handle
           type: "positive",                   //stored as data() attribute, can be used for styling
           single: false,               //wheter only one edge of this type can start from same node (default false)
           nodeTypeNames: ["node"],    //which types of nodes will contain this handle
@@ -297,7 +300,7 @@
      handles.registerHandle({
           positionX: "left",          //horizontal position of the handle  (left | center | right)
           positionY: "center",        //vertical position of the handle  (top | center | bottom)
-          color: "red",             //color of the handle
+          color: "#b14e46",             //color of the handle
           type: "negative",                   //stored as data() attribute, can be used for styling
           single: false,               //wheter only one edge of this type can start from same node (default false)
           nodeTypeNames: ["node"],    //which types of nodes will contain this handle
@@ -416,6 +419,15 @@
 
     </script>
 <script>
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 
 
 </script>

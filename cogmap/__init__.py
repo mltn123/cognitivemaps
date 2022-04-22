@@ -50,7 +50,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     berufsfeld_andere = models.StringField(label="Andere Branche", blank=True)
-    alter = models.IntegerField()
+    alter = models.IntegerField(label="Ihr Alter")
     Leitzins_erhoeht = models.BooleanField(blank=True)
     Inflationsrate_steigt = models.BooleanField(blank=True)
     Kreditzinsen = models.BooleanField(blank=True)
@@ -82,7 +82,7 @@ class Player(BasePlayer):
     Rohstoffe = models.BooleanField(blank=True)
 
     berufsfeld = models.StringField(
-        label = "Wählen Sie bitte die Branche ihres Berufes / ihres Studiums",
+        label = "Wählen Sie bitte die Branche Ihres Berufes / Ihres Studiums",
         choices=["Bau, Architektur, Vermessung", "Dienstleistung", "Elektro", "Gesundheit", "IT, Computer",
                  "Kunst, Kultur, Gestaltung", "Landwirtschaft, Natur, Umwelt", "Medien", "Metall, Maschinenbau",
                  "Naturwissenschaften","Produktion, Fertigung", "Soziales, Pädagogik", "Technik, Technologiefelder",
