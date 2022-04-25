@@ -141,7 +141,7 @@
 
           container: document.getElementById('cy'),
           wheelSensitivity: 0.5,
-            minZoom: 1,
+            minZoom: 2,
             maxZoom: 5,
 
           layout: {
@@ -437,6 +437,7 @@ function generateRandomColor() {
 
   <body>
   <h1>    Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen. </h1>
+  <h1> <b>Im Anschluss klicken Sie bitte unten auf "Abschließen"</b></h1>
 
 <div id="Dialog" title="Konnektor Wählen">
 <style>#slider {
@@ -471,6 +472,10 @@ label
         <input type="radio" name="add" class="connectors", value="Mangel  erhöht  die Preise">Mangel erhöht die Preise</input><br/>
         <input type="radio" name="add" class="connectors", value="Missmanagement  erhöht  die  Preise">Missmanagement erhöht die Preise</input><br/>
         <input type="radio" name="add" class="connectors", value="Höhere  Preise  dienen  der  Bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
+        <input type="radio" name="add" id="owncheck" class="connectors", value="Eigene Begruendung">Eigene Begründung (Stichpunktartig)</input><br/>
+        </div>
+    <div id ="textinput", style="display: none;"> <input size=40" type="text" id="own"><br>
+    </div>
     </div>
 
 </div>

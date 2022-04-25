@@ -313,7 +313,19 @@
                     //$("#Dialog").dialog("open")
                     if (this._hover.id() != 'ARROW_END_ID') {
                     $("#Dialog").dialog("open").on("dialogclose", function(e){
-                    console.log(this._hover.id())
+                     if ($("input:radio[id='owncheck']").is(":checked")) {
+                      var edge =  this._cy.add({
+                        data: {
+                            source:  thatdrag,
+                            target:  this._hover.id(),
+                            type:    this._hit.handle.type,
+                            weight:    $('#slider').slider('value'),
+                            connector: $('#own').val()
+                        },
+                    });
+
+                      }
+                       else {
                      var edge =  this._cy.add({
                         data: {
                             source:  thatdrag,
@@ -323,9 +335,7 @@
                             connector: $('input[name=add]:checked', '#Dialog').val()
                         },
                     });
-                      //console.log("test")
-
-                      //thatdrag = null;
+                    }
                       this._initEdgeEvents(edge);
                       var layout = cy.layout({
                                 name: 'avsdf',
@@ -347,6 +357,9 @@
                       e.stopImmediatePropagation();
                       $("#slider").slider('value', 5);
                       $("input:radio[name='add']").prop('checked', false);
+                      $('#gbg').toggle(this.value == 'good-begets-good');
+                      $('#fixedpie').toggle(this.value == 'fixed-pie');
+                      $('#textinput').toggle(this.value == 'Eigene Begruendung');
                    }.bind(this));
                     }
 
@@ -532,7 +545,8 @@ $(function() {
                 $(this).dialog('close');
             }
         },
-        draggable: false,
+        draggable: true,
+
         beforeClose: function( event, ui ) {
             if ( !$("input:radio[name='add']").is(":checked")) {
             event.preventDefault();
@@ -544,6 +558,7 @@ $(function() {
 $('input[name="add"]:radio').change(function () {
     $('#gbg').toggle(this.value == 'good-begets-good');
     $('#fixedpie').toggle(this.value == 'fixed-pie');
+    $('#textinput').toggle(this.value == 'Eigene Begruendung');
 });
 
 $("#slider").slider({

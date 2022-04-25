@@ -5,14 +5,22 @@
 
 
 
-<p>Wählen Sie bitte 8 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang stehen</p>
+<p>Wählen Sie bitte 3 bis 8 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang stehen</p>
 <p id="counter"></p>
-{{ for field in C.CHOICES }}
+{{ for choice in form}}
 <label>
-    <input type="checkbox" name="{{ field.name }}" value="1">
-    {{ field.label }}
-    <script>formInputs.{{ field.name }}.onchange = function () { checkboxes(); }</script>
+    <input type="checkbox" name="{{ choice.name }}" value="1">
+    {{ choice.label }}
+    <script>formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
+            $('input:checkbox[name="Inflationsrate_steigt"]').prop('checked',true);
+            $('input:checkbox[name="Inflationsrate_steigt"]').prop('disabled',true);
+            $("form").submit(function() {
+                $("input").removeAttr("disabled");
+            });
+</script>
 </label><br>
+
+
 <script>
 function checkboxes()
 {
