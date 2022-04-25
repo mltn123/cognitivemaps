@@ -1,3 +1,4 @@
+
 {{ block title }}
     Soziodemografische Daten
 {{ endblock }}
@@ -9,6 +10,7 @@
 {{formfield 'geschlecht'}}
 {{formfield 'berufsfeld'}}
 <br>
+<link rel="stylesheet" href={% static "style.css" %}>
 <div id="berufsfeld_hide" style="display: none;">
 {{formfield 'berufsfeld_andere'}}
 </div>

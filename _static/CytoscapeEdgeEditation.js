@@ -540,11 +540,15 @@ $(function() {
     height: 'auto',
     width: 'auto',
     modal: true,
- buttons: {
-            OK: function() {
-                $(this).dialog('close');
-            }
-        },
+buttons: [
+    {
+        text: "Ok",
+        class: 'otree-btn-next btn btn-primary',
+        click: function() {
+            $(this).dialog("close");
+        }
+    }
+],
         draggable: true,
 
         beforeClose: function( event, ui ) {
