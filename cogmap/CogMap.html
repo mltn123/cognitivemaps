@@ -436,9 +436,10 @@ function generateRandomColor() {
 
 
   <body>
-  <h1>    Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen. </h1>
-  <h1> <b>Im Anschluss klicken Sie bitte unten auf "Abschließen"</b></h1>
-
+  <h1>    Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen.<br>
+      Dabei gibt es kein richtig oder falsch.<br> Sie können die Ereignisse mit der Maus verschieben, und mit dem Mausrad die Zoomstufe anpassen. </h1>
+  <h1> <b>Im Anschluss klicken Sie bitte unten auf "Weiter"</b></h1>
+<button class="otree-btn-next btn btn-primary" name="next" value="True" onclick="saveFunction()">Weiter</button>
 <div id="Dialog" title="Konnektor Wählen">
 <style>#slider {
     width: 50%;
@@ -499,6 +500,6 @@ function saveFunction(){
 }
 </script>
 
-<button class="otree-btn-next btn btn-primary" name="next" value="True" onclick="saveFunction()">Abschließen</button>
+
 
 {{ endblock }}

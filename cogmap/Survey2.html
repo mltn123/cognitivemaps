@@ -1,0 +1,55 @@
+
+{{ block title }}
+    Bildung & Beruf
+{{ endblock }}
+{{ block content }}
+
+
+
+{{ if player.taetigkeit == "Ausbildung" or player.taetigkeit  == "Berufstätig" or player.taetigkeit  == "Duales / berufsbegleitendes Studium" or player.taetigkeit  == "keine Tätigkeit / Ruhestand" }}
+    {{ formfield 'berufsfeld' label=berufsfeld_label }}
+{{ else }}
+ {{ formfield 'studienbereich' }}
+
+
+{{ endif }}
+ {{ formfield 'bildungsgrad' }}
+
+<div id="berufsfeld_andere_hide" style="display: none;">
+{{formfield 'berufsfeld_andere'}}
+</div>
+<div id="studium_andere_hide" style="display: none;">
+{{formfield 'studienbereich_andere'}}
+</div>
+
+<script>
+$('#id_berufsfeld').on('change', function (e) {
+var select = this;
+var value = select.options[select.selectedIndex].value;
+var x = document.getElementById("berufsfeld_andere_hide");
+if (value == "Andere") {
+    x.style.display="block"
+}
+else {
+    x.style.display="none"
+}
+});
+
+$('#id_studienbereich').on('change', function (e) {
+var select = this;
+var value = select.options[select.selectedIndex].value;
+var x = document.getElementById("berufsfeld_andere_hide");
+if (value == "Andere") {
+    x.style.display="block"
+}
+else {
+    x.style.display="none"
+}
+});
+
+
+</script>
+
+    {{ next_button }}
+
+{{ endblock }}

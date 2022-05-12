@@ -1,0 +1,71 @@
+
+{{ block title }}
+    Medienkonsum
+{{ endblock }}
+{{ block content }}
+
+
+Welche dieser Arten von Medien konsumieren Sie am meisten. (Mehrfachnennung möglich)
+<br>
+<br>
+
+    <input name="medium_zeitschriften" type="checkbox"/> Zeitschriften<br>
+    <input name="medium_radio" type="checkbox"/> Radio<br>
+    <input name="medium_fernsehen" type="checkbox"/> Fernseher<br>
+    <input name="medium_internet" type="checkbox"/> Online Zeitschriften<br>
+    <input name="medium_sozial" type="checkbox"/> Soziale Medien (Facebook / Twitter / Instagram)<br>
+
+<br>
+<br>
+Welche dieser Arten von Nachrichten konsumieren Sie am meisten? (Mehrfachnennung möglich)
+<br>
+<br>
+
+    <input name="nachrichten_regional" type="checkbox"/> Regionalnachrichten<br>
+    <input name="nachrichten_innenpolitik" type="checkbox"/> Innenpolitik<br>
+    <input name="nachrichten_wirtschaft" type="checkbox"/> Wirtschaft<br>
+    <input name="nachrichten_finanzen" type="checkbox"/> Finanzen<br>
+    <input name="nachrichten_wissenschaft" type="checkbox"/> Wissenschaft<br>
+    <input name="nachrichten_umwelt" type="checkbox"/> Umwelt und Nachhaltigkeit<br>
+
+<br>
+<br>
+Aus welchen Quellen beziehen Sie am häufigsten Ihre Nachrichten? (Mehrfachnennung möglich)
+<br>
+<br>
+    <input name="medien_bild" type="checkbox"/> Bild / Bild.de<br>
+    <input name="medien_focus" type="checkbox"/> FOCUS / FOCUS Online<br>
+    <input name="medien_faz" type="checkbox"/> Frankfurter Allgemeine Zeitung / FAZ.net<br>
+    <input name="medien_instagram" type="checkbox"/> Instagram<br>
+    <input name="medien_prosieben" type="checkbox"/> ProSieben Newstime<br>
+    <input name="medien_rtl" type="checkbox"/> RTL News<br>
+    <input name="medien_spiegel" type="checkbox"/> Der Spiegel / Spiegel Online<br>
+    <input name="medien_stern" type="checkbox"/> Der Stern / Stern Online<br>
+    <input name="medien_sueddeutsche" type="checkbox"/> Süddeutsche Zeitung / sz.de<br>
+    <input name="medien_tagesschau" type="checkbox"/> Tagesschau / Tagesschau.de<br>
+    <input name="medien_tagesspiegel" type="checkbox"/> Tagesspiegel / Tagesspiegel.de<br>
+    <input name="medien_taz" type="checkbox"/> taz / taz.de<br>
+    <input name="medien_twitter" type="checkbox"/> Twitter<br>
+    <input name="medien_welt" type="checkbox"/> Die Welt / Welt.de<br>
+    <input name="medien_zeit" type="checkbox"/> Die Zeit / Zeit Online<br>
+    <input name="medien_telegram" type="checkbox"/> Telegram Messenger<br>
+    <input name="medien_whatsapp" type="checkbox"/> WhatsApp Messenger<br>
+    <input name="medien_andere_toggle" type="checkbox" id="medien_andere"/> Andere Quellen<br>
+<br>
+<div id="quelle_andere_hide" style="display: none;">
+{{formfield 'medien_andere'}}
+</div>
+<br>
+<br>
+
+<script>
+
+$('#medien_andere').click(function() {
+    $('#quelle_andere_hide').toggle();
+});
+
+
+</script>
+    {{ next_button }}
+
+{{ endblock }}

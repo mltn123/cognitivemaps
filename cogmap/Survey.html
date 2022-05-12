@@ -8,28 +8,11 @@
 
 {{formfield 'alter'}}
 {{formfield 'geschlecht'}}
-{{formfield 'berufsfeld'}}
-<br>
-<link rel="stylesheet" href={% static "style.css" %}>
-<div id="berufsfeld_hide" style="display: none;">
-{{formfield 'berufsfeld_andere'}}
-</div>
+{{formfield 'taetigkeit'}}
 
-<script>formInputs.berufsfeld.onchange = function () { zeigeandere(); }</script>
-<script>
-function zeigeandere()
-{
-var select = document.getElementById('id_berufsfeld');
-var value = select.options[select.selectedIndex].value;
-var x = document.getElementById("berufsfeld_hide");
-if (value == "Andere") {
-    x.style.display="block"
-}
-else {
-    x.style.display="none"
-}
 
-}
+
+
 </script>
     {{ next_button }}
 

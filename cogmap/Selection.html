@@ -6,30 +6,41 @@
 <link rel="stylesheet" href={% static "style.css" %}>
 
 
-<p>Wählen Sie bitte 3 bis 8 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang stehen</p>
+<p>Wählen Sie bitte weitere 2 bis 7 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang zur Inflation stehen</p>
 <p id="counter"></p>
 {{ for choice in form}}
 <label>
     <input type="checkbox" name="{{ choice.name }}" value="1">
     {{ choice.label }}
-    <script>formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
+
+    <script>
+            formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
             $('input:checkbox[name="Inflationsrate_steigt"]').prop('checked',true);
             $('input:checkbox[name="Inflationsrate_steigt"]').prop('disabled',true);
             $("form").submit(function() {
                 $("input").removeAttr("disabled");
             });
 </script>
+
 </label><br>
+        {{ endfor }}
+
 
 
 <script>
 function checkboxes()
 {
- document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length  +  " / " + 8
+ document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / " + 7
 }
 </script>
-{{ endfor }}
 
-    {{ next_button }}
+<br>
+<script>
+function saveFunction(){
+     document.getElementById('reihenfolge').value = JSON.stringify(cy.json());
+}
+</script>
+
+<button class="otree-btn-next btn btn-primary" name="next" value="True" onclick="saveFunction()">Weiter</button>
 
 {{ endblock }}

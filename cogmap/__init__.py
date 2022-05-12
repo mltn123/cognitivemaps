@@ -40,6 +40,7 @@ class C(BaseConstants):
     ]
 
 
+
 class Subsession(BaseSubsession):
     pass
 
@@ -50,6 +51,9 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     berufsfeld_andere = models.StringField(label="Andere Branche", blank=True)
+    studienbereich_andere = models.StringField(label="Anderer Studienfachbereich", blank=True)
+    medien_andere = models.StringField(label="Andere Quelle", blank=True)
+
     alter = models.IntegerField(label="Ihr Alter")
     Leitzins_erhoeht = models.BooleanField(blank=True, label= "Die Zentralbank erhöht den Leitzins.")
     Inflationsrate_steigt = models.BooleanField(blank=True, label="Die Inflationsrate steigt")
@@ -81,12 +85,19 @@ class Player(BasePlayer):
     Diaeten = models.BooleanField(blank=True, label="Der Bundestag erhöht die Diäten.")
     Rohstoffe = models.BooleanField(blank=True, label="In Zukunft werden Rohstoffe knapp.")
 
+    studienbereich = models.StringField(
+        label = "Wählen Sie bitte Ihren Studienfachbereich",
+        choices=["Event, Tourismus & Hotel ", "Gesellschafts- & Sozialwissenschaften", "Gesundheit & Medizin", "Informatik", "Ingenieurwesen & Technik",
+                 "Kunst, Musik, Design & Mode", "Lehramt & Pädagogik", "Medien, Kommunikation & Marketing", "Naturwissenschaften & Mathematik",
+                 "Psychologie","Recht, Steuern & Verwaltung ", "Sport & Fitness", "Sprach- & Kulturwissenschaft",
+                 "Umwelt-, Agrar- & Forstwissenschaft", "Wirtschaft & Management", "Andere"], blank=True
+    )
+
     berufsfeld = models.StringField(
-        label = "Wählen Sie bitte die Branche Ihres Berufes / Ihres Studiums",
         choices=["Bau, Architektur, Vermessung", "Dienstleistung", "Elektro", "Gesundheit", "IT, Computer",
                  "Kunst, Kultur, Gestaltung", "Landwirtschaft, Natur, Umwelt", "Medien", "Metall, Maschinenbau",
                  "Naturwissenschaften","Produktion, Fertigung", "Soziales, Pädagogik", "Technik, Technologiefelder",
-                 "Verkehr, Logistik", "Wirtschaft, Verwaltung", "Andere"]
+                 "Verkehr, Logistik", "Wirtschaft, Verwaltung", "Andere"], blank=True
     )
     geschlecht = models.StringField(
         label = "Ihr Geschlecht",
@@ -94,16 +105,115 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
+    taetigkeit = models.StringField(
+        label = "Wählen Sie bitte ihren momentanen Beschäftigungsstatus",
+        choices=["Ausbildung", "Studium", "Berufstätig", "Duales / berufsbegleitendes Studium", "keine Tätigkeit / Ruhestand"]
+    )
+
+    bildungsgrad = models.BooleanField(
+        label = "Wählen Sie bitte Ihren höchsten Bildungsabschluss",
+        choices=["ohne Abschluss", "Hauptschulabschluss", "Realschulabschluss", "Fachabitur", "Abitur", "Bachelorabschluss", "Masterabschluss / Diplom",]
+    )
+
+
+    nachrichten_regional = models.BooleanField(blank=True, label="Regionalnachrichten")
+    nachrichten_innenpolitik = models.BooleanField(blank=True, label="Innenpolitik")
+    nachrichten_aussenpolitik = models.BooleanField(blank=True, label="Außenpolitik")
+    nachrichten_wirtschaft = models.BooleanField(blank=True, label="Wirtschaft")
+    nachrichten_finanzen = models.BooleanField(blank=True, label="Finanzen")
+    nachrichten_gesellschaft = models.BooleanField(blank=True, label="Gesellschaft")
+    nachrichten_wissenschaft = models.BooleanField(blank=True, label="Wissenschaft")
+    nachrichten_umwelt = models.BooleanField(blank=True, label="Umwelt und Nachhaltigkeit")
+
+    medium_zeitschriften = models.BooleanField(blank=True, label="Zeitschriften in Papierform")
+    medium_radio = models.BooleanField(blank=True, label="Radio")
+    medium_fernsehen = models.BooleanField(blank=True, label="Fernsehen")
+    medium_internet = models.BooleanField(blank=True, label="Internet")
+    medium_sozial = models.BooleanField(blank=True, label="Soziale Medien")
+
+    medien_bild = models.BooleanField(blank=True, label="Bild / Bild.de")
+    medien_focus = models.BooleanField(blank=True, label="FOCUS / FOCUS Online")
+    medien_faz = models.BooleanField(blank=True, label="Frankfurter Allgemeine Zeitung / FAZ.net")
+    medien_spiegel = models.BooleanField(blank=True, label="Der Spiegel / Spiegel Online")
+    medien_stern = models.BooleanField(blank=True, label="Der Stern / Stern Online")
+    medien_sueddeutsche = models.BooleanField(blank=True, label="Süddeutsche Zeitung / sz.de")
+    medien_tagesschau = models.BooleanField(blank=True, label="Tagesschau / Tagesschau.de")
+    medien_tagesspiegel = models.BooleanField(blank=True, label="Tagesspiegel / Tagesspiegel.de")
+    medien_taz = models.BooleanField(blank=True, label="taz / taz.de")
+    medien_welt = models.BooleanField(blank=True, label="Die Welt / Welt.de")
+    medien_zeit = models.BooleanField(blank=True, label="Die Zeit / Zeit Online")
+    medien_rtl = models.BooleanField(blank=True, label="RTL News")
+    medien_facebook = models.BooleanField(blank=True, label="Facebook")
+    medien_twitter = models.BooleanField(blank=True, label="Twitter")
+    medien_instagram = models.BooleanField(blank=True, label="Instagram")
+    medien_whatsapp = models.BooleanField(blank=True, label="WhatsApp")
+    medien_telegram = models.BooleanField(blank=True, label="Telegram")
+    medien_prosieben = models.BooleanField(blank=True, label="ProSieben Newstime")
+    medien_andere_toggle = models.BooleanField(blank=True, label="Andere Medien")
+
+    verschw_1 = models.IntegerField()
+    verschw_2 = models.IntegerField()
+    verschw_3 = models.IntegerField()
+    verschw_4 = models.IntegerField()
+    verschw_5 = models.IntegerField()
+    verschw_6 = models.IntegerField()
+
+
     json = models.StringField()
+    reihenfolge = models.StringField()
     pass
 
 
 # PAGES
 class Survey(Page):
     form_model = 'player'
-    form_fields = ['berufsfeld','berufsfeld_andere','alter','geschlecht']
+    form_fields = ['alter','geschlecht',"taetigkeit"]
+    pass
+
+
+class Survey2(Page):
+    form_model = 'player'
+    form_fields = ['berufsfeld','berufsfeld_andere',"studienbereich","studienbereich_andere","bildungsgrad" ]
+    @staticmethod
+    def vars_for_template(player):
+        if player.field_maybe_none("taetigkeit") ==  "Ausbildung":
+            return dict(
+                berufsfeld_label='Wählen Sie bitte die Branche Ihrer Ausbildung'
+            )
+        elif player.field_maybe_none("taetigkeit") ==  "Berufstätig":
+            return dict(
+                berufsfeld_label='Wählen Sie bitte die Branche Ihres Berufes'
+            )
+        elif player.field_maybe_none("taetigkeit") ==  "Duales / berufsbegleitendes Studium":
+            return dict(
+                berufsfeld_label='Wählen Sie bitte die Branche Ihres Dualen / berufsbegleitenden Studiums'
+            )
+        elif player.field_maybe_none("taetigkeit") ==  "keine Tätigkeit / Ruhestand":
+            return dict(
+                berufsfeld_label='Wählen Sie bitte die Branche Ihres ehemaligen Berufes'
+            )
+        else:
+            return dict(
+                berufsfeld_label=''
+            )
 
     pass
+
+class Survey3(Page):
+    form_model = 'player'
+    form_fields = ['nachrichten_regional','nachrichten_innenpolitik','nachrichten_aussenpolitik','nachrichten_wirtschaft',
+                   'nachrichten_finanzen', 'nachrichten_gesellschaft', 'nachrichten_wissenschaft', 'nachrichten_umwelt',
+                   'medium_zeitschriften', 'medium_radio', 'medium_fernsehen', 'medium_internet', 'medium_sozial',
+                   'medien_bild', 'medien_focus','medien_faz','medien_spiegel','medien_stern','medien_sueddeutsche',
+                   'medien_tagesschau','medien_tagesspiegel','medien_taz','medien_welt','medien_zeit','medien_rtl',
+                   'medien_facebook','medien_twitter','medien_instagram','medien_whatsapp','medien_telegram','medien_prosieben',
+                   'medien_andere'
+
+    ]
+
+
+    pass
+
 
 class Selection(Page):
     form_model = 'player'
@@ -114,9 +224,11 @@ class Selection(Page):
     def get_form_fields(player):
         import random
         choices = C.CHOICES.copy()
+        print(choices)
         rest = choices[1:]
         random.shuffle(rest)
         choices = [choices[0]] + rest
+        player.reihenfolge = ','.join(str(e['name']) for e in choices)
         return [choice['name'] for choice in choices]
 
 
@@ -129,9 +241,9 @@ class Selection(Page):
             if values[choice['name']]:
                 num_selected += 1
         if num_selected > 8:
-            return "Wählen Sie bis zu 8 Ereignissen"
+            return "Wählen Sie bis zu 7 zusätzliche Ereignissen"
         if num_selected < 3:
-            return "Wählen Sie mindestens 3 Ereignisse"
+            return "Wählen Sie mindestens 2 zusätzliche Ereignisse"
     pass
 
 class CogMap(Page):
@@ -151,6 +263,11 @@ class CogMap(Page):
     pass
 
 
+class Narratives(Page):
+    form_model = 'player'
+    form_fields = ['verschw_1','verschw_2','verschw_3','verschw_4','verschw_5','verschw_6']
+    pass
+
 class ResultsWaitPage(WaitPage):
     pass
 
@@ -158,5 +275,5 @@ class ResultsWaitPage(WaitPage):
 class Results(Page):
     pass
 
-
-page_sequence = [Survey, Selection,  CogMap]
+#page_sequence = [Narratives]
+page_sequence = [Survey, Survey2,Survey3, Selection,  CogMap, Narratives]

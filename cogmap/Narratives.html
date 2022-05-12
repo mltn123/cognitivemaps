@@ -1,0 +1,66 @@
+
+{{ block title }}
+<script src={% static "mgslider.js" %}></script>
+
+    Narrative
+{{ endblock }}
+{{ block content }}
+
+    <style>
+        .mgslider-wrapper {
+            border-spacing: 10px;
+        }
+        .mgslider-limit {
+            width: 10%;
+            min-width: 75px;
+            height: 40px;
+            margin: 100px;
+            text-align: center;
+            background: #eee;
+            border: 1px solid #888;
+        }
+        .mgslider-limit, .mgslider-value {
+            font-variant-numeric: tabular-nums;
+        }
+        .mgslider-before {
+            height: 16px;
+            width: 100%;
+            background: #1e5bff;
+        }
+    </style>
+
+    {{ formfield_errors 'verschw_1' }}
+
+    <p> Bitte Bewerten Sie die vorliegenden Narrative gemäß ihrer persönlichen Zustimmung </p>
+
+    <p> <b> 0 bedeutet "ich stimme gar nicht zu" , 10 bedeutet "ich stimme voll zu" </b></p>
+
+    <p>Klicken Sie auf die blaue Leiste um den Regler zu enthüllen.</p>
+    <br><br>
+    <div id="verschw_1_div"><b>Die von der Regierung angegebene Inflationsrate ist geringer als die tatsächliche Inflationsrate </b><br><br></div><br><br>
+    <div id="verschw_2_div"><b>Der Warenkorb der zur Messung der Inflationsrate verwendet wird, ist absichtlich so gewählt das die gemessene Inflation unter der tatsächlichen Inflation liegt  </b><br><br></div><br><br>
+    <div id="verschw_3_div"><b>Die Inflation entwickelt sich zum monetären Vorteil der Akteure, welche die Inflation steuern </b><br><br></div><br><br>
+    <div id="verschw_4_div"><b>Inflation und Deflation sind ausschließlich das Resultat des Handelns der Europäischen  Zentralbank </b><br><br></div><br><br>
+    <div id="verschw_5_div"><b>Die Inflation ist ein Komplott, um der Bevölkerung das Geld zu stehlen und es an die im Hintergrund Tätigen Eliten zu übergeben </b><br><br></div><br><br>
+    <div id="verschw_6_div"><b>Inflation ist eine absichtlich beigeführte zusätzliche Steuer auf das Einkommen der Bevölkerung </b><br><br></div><br><br>
+
+  <script>
+        $(document).ready(function (event) {
+            slider1 = new mgslider("verschw_1", 0, 10, 0.5);
+            slider1.print(document.getElementById("verschw_1_div"));
+            slider2 = new mgslider("verschw_2", 0, 10, 0.5);
+            slider2.print(document.getElementById("verschw_2_div"));
+            slider3 = new mgslider("verschw_3", 0, 10, 0.5);
+            slider3.print(document.getElementById("verschw_3_div"));
+            slider4 = new mgslider("verschw_4", 0, 10, 0.5);
+            slider4.print(document.getElementById("verschw_4_div"));
+            slider5 = new mgslider("verschw_5", 0, 10, 0.5);
+            slider5.print(document.getElementById("verschw_5_div"));
+            slider6 = new mgslider("verschw_6", 0, 10, 0.5);
+            slider6.print(document.getElementById("verschw_6_div"));
+        });
+ </script>
+
+    {{ next_button }}
+
+{{ endblock }}
