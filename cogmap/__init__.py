@@ -149,6 +149,7 @@ class Player(BasePlayer):
     medien_whatsapp = models.BooleanField(blank=True, label="WhatsApp")
     medien_telegram = models.BooleanField(blank=True, label="Telegram")
     medien_prosieben = models.BooleanField(blank=True, label="ProSieben Newstime")
+    medien_linkedin = models.BooleanField(blank=True, label="LinkedIn")
     medien_andere_toggle = models.BooleanField(blank=True, label="Andere Medien")
 
     verschw_1 = models.IntegerField()
@@ -224,7 +225,6 @@ class Selection(Page):
     def get_form_fields(player):
         import random
         choices = C.CHOICES.copy()
-        print(choices)
         rest = choices[1:]
         random.shuffle(rest)
         choices = [choices[0]] + rest

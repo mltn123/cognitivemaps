@@ -3,7 +3,7 @@
     Medienkonsum
 {{ endblock }}
 {{ block content }}
-
+<link rel="stylesheet" href={% static "style.css" %}>
 
 Welche dieser Arten von Medien konsumieren Sie am meisten. (Mehrfachnennung möglich)
 <br>
@@ -13,7 +13,7 @@ Welche dieser Arten von Medien konsumieren Sie am meisten. (Mehrfachnennung mög
     <input name="medium_radio" type="checkbox"/> Radio<br>
     <input name="medium_fernsehen" type="checkbox"/> Fernseher<br>
     <input name="medium_internet" type="checkbox"/> Online Zeitschriften<br>
-    <input name="medium_sozial" type="checkbox"/> Soziale Medien (Facebook / Twitter / Instagram)<br>
+    <input name="medium_sozial" type="checkbox"/> Soziale Medien (Facebook / Instagram / Twitter / LinkedIn)<br>
 
 <br>
 <br>
@@ -35,8 +35,10 @@ Aus welchen Quellen beziehen Sie am häufigsten Ihre Nachrichten? (Mehrfachnennu
 <br>
     <input name="medien_bild" type="checkbox"/> Bild / Bild.de<br>
     <input name="medien_focus" type="checkbox"/> FOCUS / FOCUS Online<br>
+    <input name="medien_facebook" type="checkbox"/> Facebook<br>
     <input name="medien_faz" type="checkbox"/> Frankfurter Allgemeine Zeitung / FAZ.net<br>
     <input name="medien_instagram" type="checkbox"/> Instagram<br>
+    <input name="medien_linkedin" type="checkbox"/> LinkedIn<br>
     <input name="medien_prosieben" type="checkbox"/> ProSieben Newstime<br>
     <input name="medien_rtl" type="checkbox"/> RTL News<br>
     <input name="medien_spiegel" type="checkbox"/> Der Spiegel / Spiegel Online<br>

@@ -3,8 +3,28 @@
     Soziodemografische Daten
 {{ endblock }}
 {{ block content }}
+<link rel="stylesheet" href={% static "style.css" %}>
+<style>
+      #logo{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        font-size: 18px;
 
 
+    }
+    img {
+      max-width: 15%;
+      height: auto;
+
+
+    }
+</style>
+<head>
+    <div id="logo">
+    	<img src="{{ static 'Logo_RUB_BLAU_rgb.jpg' }}"/>
+    </div>
+</head>
 
 {{formfield 'alter'}}
 {{formfield 'geschlecht'}}
