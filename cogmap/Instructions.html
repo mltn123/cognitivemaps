@@ -1,0 +1,27 @@
+
+{{ block title }}
+    Anleitung
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href={% static "style.css" %}>
+<p> Auf den Folgenden Seiten möchte ich Sie Bitten aus einer Reihe von Ereignissen auszuwählen, und diese kausal zu Verknüpfen. <br>
+ Das unter diesem Absatz eingebettete Video verdeutlicht die Funktionsweise der weiteren Erhebung. </p>
+<p> Um eine Beeinflussung auszuschließen, wurden die Ereignisse in diesem Beispielvideo durch die Buchstaben des Alphabets ersetzt. </p>
+
+<p><b>Beispielhafte Erklärung</b></p>
+<p> Das Verbinden der Ereignisse A und B mit einem  <span style="color:#7bae37;"><b>positiven</b></span> Pfeil, bedeutet das eine verstärkte Ausprägung von A ,
+    auch eine verstärkte Ausprägung von B zur Folge hat.  </p>
+
+<p> Das Verbinden der Ereignisse A und B mit einem  <span style="color:#b14e46;"><b>negativen</b></span> Pfeil, bedeutet das eine verstärkte Ausprägung von A ,
+    eine schwächere Ausprägung von B zur Folge hat.  </p>
+
+
+
+<video src={% static "instructions.webm" %} autoplay controls poster="posterimage.jpg" width="640" height="480" >
+</video><br><br>
+Wenn Sie das Video nicht abspielen können, können sie es <a href="{% static "instructions.webm" %}">hier</a> herunterladen.
+
+
+    {{ next_button }}
+
+{{ endblock }}

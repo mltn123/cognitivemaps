@@ -116,51 +116,51 @@ class Player(BasePlayer):
     )
 
 
-    nachrichten_regional = models.BooleanField(blank=True, label="Regionalnachrichten")
-    nachrichten_innenpolitik = models.BooleanField(blank=True, label="Innenpolitik")
-    nachrichten_aussenpolitik = models.BooleanField(blank=True, label="Außenpolitik")
-    nachrichten_wirtschaft = models.BooleanField(blank=True, label="Wirtschaft")
-    nachrichten_finanzen = models.BooleanField(blank=True, label="Finanzen")
-    nachrichten_gesellschaft = models.BooleanField(blank=True, label="Gesellschaft")
-    nachrichten_wissenschaft = models.BooleanField(blank=True, label="Wissenschaft")
-    nachrichten_umwelt = models.BooleanField(blank=True, label="Umwelt und Nachhaltigkeit")
+    nachrichten_regional = models.FloatField(blank=True, label="Regionalnachrichten")
+    nachrichten_innenpolitik = models.FloatField(blank=True, label="Innenpolitik")
+    nachrichten_aussenpolitik = models.FloatField(blank=True, label="Außenpolitik")
+    nachrichten_wirtschaft = models.FloatField(blank=True, label="Wirtschaft")
+    nachrichten_finanzen = models.FloatField(blank=True, label="Finanzen")
+    nachrichten_gesellschaft = models.FloatField(blank=True, label="Gesellschaft")
+    nachrichten_wissenschaft = models.FloatField(blank=True, label="Wissenschaft")
+    nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
 
-    medium_zeitschriften = models.BooleanField(blank=True, label="Zeitschriften in Papierform")
-    medium_radio = models.BooleanField(blank=True, label="Radio")
-    medium_fernsehen = models.BooleanField(blank=True, label="Fernsehen")
-    medium_internet = models.BooleanField(blank=True, label="Internet")
-    medium_sozial = models.BooleanField(blank=True, label="Soziale Medien")
+    medium_zeitschriften = models.FloatField(blank=True, label="Zeitschriften in Papierform")
+    medium_radio = models.FloatField(blank=True, label="Radio")
+    medium_fernsehen = models.FloatField(blank=True, label="Fernsehen")
+    medium_internet = models.FloatField(blank=True, label="Internet")
+    medium_sozial = models.FloatField(blank=True, label="Soziale Medien")
 
-    medien_bild = models.BooleanField(blank=True, label="Bild / Bild.de")
-    medien_focus = models.BooleanField(blank=True, label="FOCUS / FOCUS Online")
-    medien_faz = models.BooleanField(blank=True, label="Frankfurter Allgemeine Zeitung / FAZ.net")
-    medien_spiegel = models.BooleanField(blank=True, label="Der Spiegel / Spiegel Online")
-    medien_stern = models.BooleanField(blank=True, label="Der Stern / Stern Online")
-    medien_sueddeutsche = models.BooleanField(blank=True, label="Süddeutsche Zeitung / sz.de")
-    medien_tagesschau = models.BooleanField(blank=True, label="Tagesschau / Tagesschau.de")
-    medien_tagesspiegel = models.BooleanField(blank=True, label="Tagesspiegel / Tagesspiegel.de")
-    medien_taz = models.BooleanField(blank=True, label="taz / taz.de")
-    medien_welt = models.BooleanField(blank=True, label="Die Welt / Welt.de")
-    medien_zeit = models.BooleanField(blank=True, label="Die Zeit / Zeit Online")
-    medien_rtl = models.BooleanField(blank=True, label="RTL News")
-    medien_facebook = models.BooleanField(blank=True, label="Facebook")
-    medien_twitter = models.BooleanField(blank=True, label="Twitter")
-    medien_instagram = models.BooleanField(blank=True, label="Instagram")
-    medien_whatsapp = models.BooleanField(blank=True, label="WhatsApp")
-    medien_telegram = models.BooleanField(blank=True, label="Telegram")
-    medien_prosieben = models.BooleanField(blank=True, label="ProSieben Newstime")
-    medien_linkedin = models.BooleanField(blank=True, label="LinkedIn")
-    medien_andere_toggle = models.BooleanField(blank=True, label="Andere Medien")
+    medien_bild = models.FloatField(blank=True, label="Bild / Bild.de")
+    medien_focus = models.FloatField(blank=True, label="FOCUS / FOCUS Online")
+    medien_faz = models.FloatField(blank=True, label="Frankfurter Allgemeine Zeitung / FAZ.net")
+    medien_spiegel = models.FloatField(blank=True, label="Der Spiegel / Spiegel Online")
+    medien_stern = models.FloatField(blank=True, label="Der Stern / Stern Online")
+    medien_sueddeutsche = models.FloatField(blank=True, label="Süddeutsche Zeitung / sz.de")
+    medien_tagesschau = models.FloatField(blank=True, label="Tagesschau / Tagesschau.de")
+    medien_tagesspiegel = models.FloatField(blank=True, label="Tagesspiegel / Tagesspiegel.de")
+    medien_taz = models.FloatField(blank=True, label="taz / taz.de")
+    medien_welt = models.FloatField(blank=True, label="Die Welt / Welt.de")
+    medien_zeit = models.FloatField(blank=True, label="Die Zeit / Zeit Online")
+    medien_rtl = models.FloatField(blank=True, label="RTL News")
+    medien_facebook = models.FloatField(blank=True, label="Facebook")
+    medien_twitter = models.FloatField(blank=True, label="Twitter")
+    medien_instagram = models.FloatField(blank=True, label="Instagram")
+    medien_whatsapp = models.FloatField(blank=True, label="WhatsApp")
+    medien_telegram = models.FloatField(blank=True, label="Telegram")
+    medien_prosieben = models.FloatField(blank=True, label="ProSieben Newstime")
+    medien_linkedin = models.FloatField(blank=True, label="LinkedIn")
+    medien_andere_toggle = models.FloatField(blank=True, label="Andere Medien")
 
-    verschw_1 = models.IntegerField()
-    verschw_2 = models.IntegerField()
-    verschw_3 = models.IntegerField()
-    verschw_4 = models.IntegerField()
-    verschw_5 = models.IntegerField()
-    verschw_6 = models.IntegerField()
+    verschw_1 = models.FloatField()
+    verschw_2 = models.FloatField()
+    verschw_3 = models.FloatField()
+    verschw_4 = models.FloatField()
+    verschw_5 = models.FloatField()
+    verschw_6 = models.FloatField()
 
 
-    json = models.StringField()
+    json = models.TextField()
     reihenfolge = models.StringField()
     pass
 
@@ -202,19 +202,21 @@ class Survey2(Page):
 
 class Survey3(Page):
     form_model = 'player'
-    form_fields = ['nachrichten_regional','nachrichten_innenpolitik','nachrichten_aussenpolitik','nachrichten_wirtschaft',
+    form_fields = ['medium_zeitschriften', 'medium_radio', 'medium_fernsehen', 'medium_internet', 'medium_sozial',
+                   'nachrichten_regional','nachrichten_innenpolitik','nachrichten_aussenpolitik','nachrichten_wirtschaft',
                    'nachrichten_finanzen', 'nachrichten_gesellschaft', 'nachrichten_wissenschaft', 'nachrichten_umwelt',
-                   'medium_zeitschriften', 'medium_radio', 'medium_fernsehen', 'medium_internet', 'medium_sozial',
-                   'medien_bild', 'medien_focus','medien_faz','medien_spiegel','medien_stern','medien_sueddeutsche',
-                   'medien_tagesschau','medien_tagesspiegel','medien_taz','medien_welt','medien_zeit','medien_rtl',
-                   'medien_facebook','medien_twitter','medien_instagram','medien_whatsapp','medien_telegram','medien_prosieben',
-                   'medien_andere'
-
+                   'medien_bild','medien_facebook', 'medien_focus','medien_faz','medien_instagram','medien_prosieben','medien_rtl','medien_spiegel','medien_stern','medien_sueddeutsche',
+                   'medien_tagesschau','medien_tagesspiegel','medien_taz','medien_telegram','medien_twitter','medien_welt', 'medien_whatsapp','medien_zeit','medien_andere'
     ]
 
 
     pass
 
+
+class Instructions(Page):
+    form_model = 'player'
+
+    pass
 
 class Selection(Page):
     form_model = 'player'
@@ -240,8 +242,6 @@ class Selection(Page):
         for choice in C.CHOICES:
             if values[choice['name']]:
                 num_selected += 1
-        if num_selected > 8:
-            return "Wählen Sie bis zu 7 zusätzliche Ereignissen"
         if num_selected < 3:
             return "Wählen Sie mindestens 2 zusätzliche Ereignisse"
     pass
@@ -276,4 +276,4 @@ class Results(Page):
     pass
 
 #page_sequence = [Narratives]
-page_sequence = [Survey, Survey2,Survey3, Selection,  CogMap, Narratives]
+page_sequence = [Survey, Survey2, Survey3, Instructions, Selection, CogMap, Narratives]

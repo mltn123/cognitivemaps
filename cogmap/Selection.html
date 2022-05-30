@@ -6,7 +6,7 @@
 <link rel="stylesheet" href={% static "style.css" %}>
 
 
-<p>Wählen Sie bitte weitere 2 bis 7 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang zur Inflation stehen</p>
+<p>Wählen Sie bitte mindestens weitere 2 Ereignisse die ihrer Meinung nach in einem kausalen Zusammenhang zur Inflation stehen</p>
 <p id="counter"></p>
 {{ for choice in form}}
 <label>
@@ -30,7 +30,7 @@
 <script>
 function checkboxes()
 {
- document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / " + 7
+ document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / mindestens " + 2
 }
 </script>
 

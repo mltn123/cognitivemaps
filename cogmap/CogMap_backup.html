@@ -439,8 +439,8 @@ function generateRandomColor() {
 
   <body>
   <h1>    Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen.<br>
-      Dabei gibt es kein richtig oder falsch. Verlassen Sie sich einfach auf Ihr Bauchgefühl<br> Sie können die Ereignisse mit der Maus verschieben, und mit dem Mausrad die Zoomstufe anpassen. </h1>
-  <h1> <b>Wenn Sie mit Ihrem Netzwerk zufrieden sind, drücken Sie bitte auf "Weiter"</b></h1>
+      Dabei gibt es kein richtig oder falsch.<br> Sie können die Ereignisse mit der Maus verschieben, und mit dem Mausrad die Zoomstufe anpassen. </h1>
+  <h1> <b>Im Anschluss klicken Sie bitte unten auf "Weiter"</b></h1>
 <button class="otree-btn-next btn btn-primary" name="next" value="True" onclick="saveFunction()">Weiter</button>
 <div id="Dialog" title="Konnektor Wählen">
 <style>#slider {
@@ -459,10 +459,25 @@ label
 
 </style>
  <div>
-     <label for="connectors"><b>Wählen Sie die Stärke der Verbindung.</b></label><br/>
+     <label for="connectors"><b>Wählen Sie die Art und die Stärke der Verbindung.</b></label><br/>
+        <p>Das Auswählen der einzelnen Möglichkeiten offenbart Ihnen weitere Details und Erklärungen.</p><br><br>
+        <div id ="gbg", style="display: none;">Gute Dinge sind mit guten verbunden, schlechte mit schlechten<br>
+            Die Wirtschaftslage ist entweder gut oder schlecht. Dann ist alles gut oder alles schlecht.
+        </div>
+        <div id ="fixedpie", style="display: none;">Es ist nicht genug für alle da<br>
+        Wenn einige mehr kriegen, ist weniger für die anderen da. Dann wird es teuer.
+        </div>
      <br>
      <br>
      <label>schwach</label><div id="slider" ></div><label>stark</label> <br><br>
+        <input type="radio" name="add" class="connectors", value="good-begets-good">"good-begets-good"</input><br/>
+        <input type="radio" name="add" class="connectors", value="fixed-pie">fixed pie</input><br/>
+        <input type="radio" name="add" class="connectors", value="Mangel  erhöht  die Preise">Mangel erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Missmanagement  erhöht  die  Preise">Missmanagement erhöht die Preise</input><br/>
+        <input type="radio" name="add" class="connectors", value="Höhere  Preise  dienen  der  Bereicherung">Höhere Preise dienen der Bereicherung.</input><br/>
+        <input type="radio" name="add" id="owncheck" class="connectors", value="Eigene Begruendung">Eigene Begründung (Stichpunktartig)</input><br/>
+        </div>
+    <div id ="textinput", style="display: none;"> <input size=40" type="text" id="own"><br>
     </div>
     </div>
 
