@@ -110,7 +110,7 @@ class Player(BasePlayer):
         choices=["Ausbildung", "Studium", "Berufstätig", "Duales / berufsbegleitendes Studium", "keine Tätigkeit / Ruhestand"]
     )
 
-    bildungsgrad = models.BooleanField(
+    bildungsgrad = models.StringField(
         label = "Wählen Sie bitte Ihren höchsten Bildungsabschluss",
         choices=["ohne Abschluss", "Hauptschulabschluss", "Realschulabschluss", "Fachabitur", "Abitur", "Bachelorabschluss", "Masterabschluss / Diplom",]
     )
@@ -197,7 +197,23 @@ class Survey2(Page):
             return dict(
                 berufsfeld_label=''
             )
-
+    @staticmethod
+    def error_message(player, values):
+        if player.taetigkeit == "Ausbildung":
+            if values['berufsfeld']  == "":
+                return 'Wählen Sie bitte die Branche Ihrer Ausbildung'
+        elif player.taetigkeit == "Studium":
+            if values['studienbereich']  == "":
+                return 'Wählen Sie bitte Ihren Studienfachbereich'
+        elif player.taetigkeit == "Duales / berufsbegleitendes Studium":
+            if values['berufsfeld']  == "":
+                return 'Wählen Sie bitte die Branche Ihres Dualen / berufsbegleitenden Studiums'
+        elif player.taetigkeit == "Berufstätig":
+            if values['berufsfeld']  == "":
+                return 'Wählen Sie bitte die Branche Ihres Berufes'
+        elif player.taetigkeit == "keine Tätigkeit / Ruhestand":
+            if values['berufsfeld'] == "":
+                return 'Wählen Sie bitte die Branche Ihres ehemaligen Berufes'
     pass
 
 class Survey3(Page):
@@ -208,7 +224,19 @@ class Survey3(Page):
                    'medien_bild','medien_facebook', 'medien_focus','medien_faz','medien_instagram','medien_prosieben','medien_rtl','medien_spiegel','medien_stern','medien_sueddeutsche',
                    'medien_tagesschau','medien_tagesspiegel','medien_taz','medien_telegram','medien_twitter','medien_welt', 'medien_whatsapp','medien_zeit','medien_andere'
     ]
-
+    @staticmethod
+    def error_message(player, values):
+        for i in ["medium_","nachrichten_","medien_"]:
+            filterdict =  dict(filter(lambda item: i in item[0], values.items()))
+            if not any(filterdict.values()):
+                k = []
+                if i == "medium_":
+                    k = "ein Medium"
+                elif i == "nachrichten_":
+                    k = "eine Art von Nachrichten"
+                elif i == "medien_":
+                    k = "eine Quelle"
+                return 'Geben Sie bitte mindestens ' + k + " an."
 
     pass
 

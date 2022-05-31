@@ -8,6 +8,28 @@
 <script src={% static "mgslider.js" %}></script>
 <link rel="stylesheet" href={% static "style.css" %}>
 <style>
+      #logo{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        font-size: 18px;
+
+
+    }
+    img {
+      max-width: 15%;
+      height: auto;
+
+
+    }
+</style>
+<head>
+    <div id="logo">
+    	<img src="{{ static 'Logo_RUB_BLAU_rgb.jpg' }}"/>
+    </div>
+</head>
+
+<style>
 .mgslider-wrapper {
     border-spacing: 10px;
 }
@@ -34,7 +56,8 @@
 </style>
 
     <p> Bitte geben Sie die Häufigkeit Ihres Medienkonsums unter den folgenden Kategorien an. </p>
-    <p> Nicht Konsumierte Medien können Sie entweder Ignorieren, oder auf Null setzen. </p>
+    <p> Nicht Konsumierte Medien können Sie entweder Ignorieren, oder auf Null setzen.<br>
+     <b>Treffen Sie jedoch bitte mindestens eine Wahl pro Fragenkategorie.</b></p>
     <p> <b> 0 bedeutet "garkein Konsum" , 10 bedeutet "mehrfacher täglicher Konsum" </b></p>
 
     <p><b>Klicken Sie auf die blaue Leiste um den Regler zu enthüllen.</b></p>
@@ -82,6 +105,8 @@ document.addEventListener("wheel", function(event){
         document.activeElement.blur();
     }
 });
+
+
  </script>
 
 
