@@ -19,6 +19,7 @@
 
 
     }
+
 </style>
 <head>
     <div id="logo">
@@ -26,13 +27,22 @@
     </div>
 </head>
 
-
+<div class="alert alert-warning" role="alert">
 <p>Wählen Sie bitte mindestens weitere 2 Ereignisse die ihrer Meinung nach in einem direkten oder indirekten kausalen Zusammenhang zur Inflation stehen</p>
+</div>
 <p id="counter"></p>
+
+<div class="container">
+  <div class="row">
 {{ for choice in form}}
-<label>
-    <input class="cc" type="checkbox" name="{{ choice.name }}" value="1">
-    {{ choice.label }}
+
+    <div class="col-auto" >
+<div class="alert alert-dark" role="alert">
+    <input class="cc" type="checkbox" name="{{ choice.name }}" >
+    <label for="{{ choice.name }}">{{ choice.label }}</label>
+
+        </div>
+</div>
 
     <script>
             formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
@@ -46,7 +56,8 @@
 </label><br>
         {{ endfor }}
 
-
+  </div>
+</div>
 
 <script>
 function checkboxes()

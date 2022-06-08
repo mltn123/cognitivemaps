@@ -58,19 +58,28 @@
 
 
 
-
+<div class="alert alert-warning" role="alert">
     <p> Bitte Bewerten Sie die vorliegenden Narrative gemäß ihrer persönlichen Zustimmung </p>
 
     <p> <b> 0 bedeutet "ich stimme gar nicht zu" , 10 bedeutet "ich stimme voll zu" </b></p>
 
     <p>Klicken Sie auf die blaue Leiste um den Regler zu enthüllen.</p>
+    </div>
     <br><br>
-    <div id="verschw_1_div" class="cc"><b>Die von der Regierung angegebene Inflationsrate ist geringer als die tatsächliche Inflationsrate </b><br><br>{{ formfield_errors 'verschw_1' }}</div><br><br>
-    <div id="verschw_2_div"><b>Der Warenkorb der zur Messung der Inflationsrate verwendet wird, ist absichtlich so gewählt das die gemessene Inflation unter der tatsächlichen Inflation liegt  </b><br><br>    {{ formfield_errors 'verschw_2' }}</div><br><br>
-    <div id="verschw_3_div"><b>Die Inflation entwickelt sich zum monetären Vorteil der Akteure, welche die Inflation steuern </b><br><br>{{ formfield_errors 'verschw_3' }}</div><br><br>
-    <div id="verschw_4_div"><b>Inflation und Deflation sind ausschließlich das Resultat des Handelns der Europäischen  Zentralbank </b><br><br>{{ formfield_errors 'verschw_4' }}</div><br><br>
-    <div id="verschw_5_div"><b>Die Inflation ist ein Komplott, um der Bevölkerung das Geld zu stehlen und es an die im Hintergrund Tätigen Eliten zu übergeben </b><br><br>{{ formfield_errors 'verschw_5' }}</div><br><br>
-    <div id="verschw_6_div"><b>Inflation ist eine absichtlich beigeführte zusätzliche Steuer auf das Einkommen der Bevölkerung </b><br><br>{{ formfield_errors 'verschw_6' }}
+    <div class="alert alert-dark" role="alert">
+    <div class="row">
+    <div id="wiss_2_div" class="col-xs-4">Die von den Gewerkschaften geforderten höheren Löhne erhöhen die Produktionskosten und somit das allgemein Preisniveau was wiederum zu höheren Lohnforderungen führt. Dieser Zyklus erhöht die Inflation.<br><br>{{ formfield_errors 'wiss_2' }}</div>
+    <div id="verschw_1_div" class="col-xs-4">Der Warenkorb der zur Messung der Inflationsrate verwendet wird, ist absichtlich so gewählt das die gemessene Inflation unter der tatsächlichen Inflation liegt, um das Fehlmanagement der politischen Akteure zu vertuschen.<br><br>{{ formfield_errors 'verschw_1' }}</div><br><br>
+    <div id="verschw_2_div" class="col-xs-4">Die fiskalpolitischen Akteure erhöhen Absichtlich die Inflationsrate, um aus den bestehenden Niedrigzinsen zusätzlichen Profit zu schlagen.<br><br>    {{ formfield_errors 'verschw_2' }}</div><br><br>
+    <div id="wiss_1_div" class="col-xs-4">Die steigenden Energiepreise führen zu höheren kosten beim Transport von Gütern und somit zu Angebotsengpässen, welche die Inflation nach oben treiben.<br><br>{{ formfield_errors 'wiss_2' }}</div><br><br>
+    <div id="verschw_3_div" class="col-xs-4">Die Inflation ist ein Komplott, um der Bevölkerung das Geld zu stehlen und es an die im Hintergrund Tätigen Eliten zu übergeben.<br><br>{{ formfield_errors 'verschw_3' }}</div><br><br>
+    <div id="verschw_4_div" class="col-xs-4">Die Inflation ist eine absichtlich beigeführte zusätzliche Steuer auf das Einkommen der Bevölkerung und stellt somit ein Kontrollinstrument der Regierenden dar.<br><br>{{ formfield_errors 'verschw_4' }}</div><br><br>
+    <div id="wiss_3_div" class="col-xs-4">Der Anstieg der Inflation führt dazu das die Zentralbank den Leitzins erhöht. Diese Maßnahme verlangsamt den Inflationsanstieg<br><br>{{ formfield_errors 'wiss_3' }}</div><br><br>
+    <div id="verschw_5_div" class="col-xs-4">Um ihre Pandemieverluste auszugleichen, erhöhen Unternehmen ihre Preise. Dieser flächendeckende Anstieg des Preisniveaus erhöht die Inflation.<br><br>{{ formfield_errors 'verschw_5' }}</div><br><br>
+
+
+</div>
+</div>
 </div><br><br>
 
   <script>
@@ -85,8 +94,12 @@
             slider4.print(document.getElementById("verschw_4_div"));
             slider5 = new mgslider("verschw_5", 0, 10, 0.5);
             slider5.print(document.getElementById("verschw_5_div"));
-            slider6 = new mgslider("verschw_6", 0, 10, 0.5);
-            slider6.print(document.getElementById("verschw_6_div"));
+            slider6 = new mgslider("wiss_1", 0, 10, 0.5);
+            slider6.print(document.getElementById("wiss_1_div"));
+            slider7 = new mgslider("wiss_2", 0, 10, 0.5);
+            slider7.print(document.getElementById("wiss_2_div"));
+            slider8 = new mgslider("wiss_3", 0, 10, 0.5);
+            slider8.print(document.getElementById("wiss_3_div"));
         });
  </script>
 

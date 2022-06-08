@@ -28,7 +28,7 @@ mgsliders.lookup = function (which) {
     return undefined;
 };
 
-function mgslider(field, min, max, step) {
+function mgslider(field, min, max, step, visbility) {
     this.field = field;
     this.min = parseFloat(min);
     this.max = parseFloat(max);

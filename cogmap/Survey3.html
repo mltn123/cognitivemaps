@@ -55,17 +55,29 @@
 }
 </style>
 
+<div class="alert alert-warning" role="alert">
+
     <p> Bitte geben Sie die Häufigkeit Ihres Medienkonsums unter den folgenden Kategorien an. </p>
     <p> Nicht Konsumierte Medien können Sie entweder Ignorieren, oder auf Null setzen.<br>
      <b>Treffen Sie jedoch bitte mindestens eine Wahl pro Fragenkategorie.</b></p>
     <p> <b> 0 bedeutet "garkein Konsum" , 10 bedeutet "mehrfacher täglicher Konsum" </b></p>
-
     <p><b>Klicken Sie auf die blaue Leiste um den Regler zu enthüllen.</b></p>
-    <br><br>
-
-<div id="target">
 
 </div>
+
+<div class="alert alert-dark" role="alert">
+    <div id="target1" class="row">
+    </div>
+</div>
+<div class="alert alert-dark" role="alert">
+    <div id="target2" class="row">
+    </div>
+</div>
+<div class="alert alert-dark" role="alert">
+    <div id="target3" class="row">
+    </div>
+</div>
+
 <div id = quelle_andere_hide >
 {{formfield 'medien_andere'}}
 </div>
@@ -78,19 +90,27 @@
             var slider = []
             {{ for field in form}}
                 item =  "{{ field.name}}"
-                var div = $('<div/>', { id: item + '_div'})
-                $('#target').append(div)
+                var div = $('<div/>', { id: item + '_div', class: 'col-md-4'})
+                if(index < 5) {
+                    $('#target1').append(div)
+                }
+                if(index >=5 && index < 13) {
+                    $('#target2').append(div)
+                }
+                if(index >= 13) {
+                    $('#target3').append(div)
+                }
                 slider[item] = new mgslider(item, 0, 10, 0.5);
-                slider[item].print(document.getElementById(item + "_div"));
+                slider[item].print(document.getElementById(item + "_div"))
                 div.prepend('{{field.label}}')
                 if(index == 0) {
-                  div.prepend("<p><b>" + "Welches Medium konsumieren Sie wie häufig?" + "</b></p>" );
+                  $('#target1').prepend("<p><b>" + "Welches Medium konsumieren Sie wie häufig?" + "</b></p>");
                  }
                  if(index == 5) {
-                  div.prepend("<p><b>" + "Welche Art von Nachrichten konsumieren Sie wie häufig?" + "</b></p>");
+                   $('#target2').prepend("<p><b>" + "Welche Art von Nachrichten konsumieren Sie wie häufig?" + "</b></p>");
                  }
                  if(index == 13) {
-                  div.prepend("<p><b>" + "Aus welchen Quellen beziehen Sie wie häufig Ihre Nachrichten? " + "</b></p>");
+                   $('#target3').prepend("<p><b>" + "Aus welchen Quellen beziehen Sie wie häufig Ihre Nachrichten? " + "</b></p>");
                  }
                  index = index + 1
                  {{ endfor }}
@@ -108,7 +128,6 @@ document.addEventListener("wheel", function(event){
 
 
  </script>
-
 
 
 
