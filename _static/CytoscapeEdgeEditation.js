@@ -149,7 +149,7 @@
 
             this._cy.on("select", "node", this._redraw.bind(this))
 
-            this._cy.on("tapstart", "node", function(){
+            this._cy.on("mousedown", "node", function(){
                 this._nodeClicked = true;
             }.bind(this));
 
@@ -167,8 +167,8 @@
 
             this._$canvas = $('<canvas></canvas>');
             this._$canvas.css("top", 0);
-            this._$canvas.on("tapstart", this._tapstart.bind(this));
-            this._$canvas.on("tapdrag", this._tapdrag.bind(this));
+            this._$canvas.on("mousedown", this._mouseDown.bind(this));
+            this._$canvas.on("mousemove", this._mouseMove.bind(this));
 
             this._ctx = this._$canvas[0].getContext('2d');
             this._$container.children("div").append(this._$canvas);
@@ -289,7 +289,7 @@
                     'z-index': '999'
                 });
         },
-        _tapstart: function(e) {
+        _mouseDown: function(e) {
             this._hit = this._hitTestHandles(e);
             if(this._hit){
                 this._lastClick = Date.now();
@@ -358,7 +358,7 @@
 
 
         },
-        _tapdrag: function(e){
+        _mouseMove: function(e){
             if(this._hover){
                 var hit = this._hitTestHandles(e);
                 if(hit){
