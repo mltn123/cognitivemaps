@@ -379,60 +379,6 @@
               },
               hasTrailingDivider: true
             },
-            {
-              id: 'connector',
-              content: 'Konnektor Ändern',
-              tooltipText: 'Konnektor Ändern',
-              selector: 'edge',
-              hasTrailingDivider: true,
-               submenu: [
-                    {
-                      id: 'good-begets-good',
-                      content: 'good-begets-good',
-                      tooltipText: 'good-begets-good',
-                      onClickFunction: function (event) {
-                        var target = event.target || event.cyTarget;
-                        target.data('connector', "good-begets-good")
-                      },
-                    },
-                    {
-                      id: 'fixed-pie',
-                      content: 'Fixed Pie',
-                      tooltipText: 'Fixed Pie',
-                      onClickFunction: function (event) {
-                        var target = event.target || event.cyTarget;
-                        target.data('connector', "fixed-pie")
-                      },
-                     },
-                      {
-                      id: 'mangel',
-                      content: 'Mangel erhöht die Preise',
-                      tooltipText: 'Mangel erhöht die Preise',
-                      onClickFunction: function (event) {
-                        var target = event.target || event.cyTarget;
-                        target.data('connector', "Mangel  erhöht  Preise")
-                      },
-                     },
-                      {
-                      id: 'missmanagement',
-                      content: 'Missmanagement erhöht die Preise',
-                      tooltipText: 'Missmanagement erhöht die Preise',
-                      onClickFunction: function (event) {
-                        var target = event.target || event.cyTarget;
-                        target.data('connector', "Missmanagement  erhöht  die  Preise")
-                      },
-                     },
-                      {
-                      id: 'bereicherung',
-                      content: 'Höhere Preise dienen der Bereicherung',
-                      tooltipText: 'Höhere Preise dienen der Bereicherung',
-                      onClickFunction: function (event) {
-                        var target = event.target || event.cyTarget;
-                        target.data('connector', "Höhere  Preise  dienen  der  Bereicherung")
-                      },
-                    },
-                  ],
-            },
           ]
         });
 

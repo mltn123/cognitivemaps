@@ -46,8 +46,8 @@
 
     <script>
             formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
-            $('input:checkbox[name="Inflationsrate_steigt"]').prop('checked',true);
-            $('input:checkbox[name="Inflationsrate_steigt"]').prop('disabled',true);
+            $('input:checkbox[name="ev_Inflationsrate_steigt"]').prop('checked',true);
+            $('input:checkbox[name="ev_Inflationsrate_steigt"]').prop('disabled',true);
             $("form").submit(function() {
                 $("input").removeAttr("disabled");
             });
