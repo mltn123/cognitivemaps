@@ -134,26 +134,26 @@
             this._cy = cy;
             this._$container = $(cy.container());
 
-            this._cy.on('mouseover tap', 'node', this._mouseOver.bind(this));
-            this._cy.on('mouseout', 'node', this._mouseOut.bind(this));
+            this._cy.on('tapdragover tap', 'node', this._tapdragover.bind(this));
+            this._cy.on('tapdragout', 'node', this._tapdragout.bind(this));
 
-            this._$container.on('mouseout', function(e){
+            this._$container.on('tapdragout', function(e){
                 this._clear();
             }.bind(this));
 
-            this._$container.on('mouseover', function(e){
+            this._$container.on('tapdragover', function(e){
                 if(this._hover) {
-                    this._mouseOver({target: this._hover});
+                    this._tapdragover({target: this._hover});
                 }
             }.bind(this));
 
             this._cy.on("select", "node", this._redraw.bind(this))
 
-            this._cy.on("mousedown", "node", function(){
+            this._cy.on("vmousedown", "node", function(){
                 this._nodeClicked = true;
             }.bind(this));
 
-            this._cy.on("mouseup", "node", function(){
+            this._cy.on("vmouseup", "node", function(){
                 this._nodeClicked = false;
             }.bind(this));
 
@@ -167,13 +167,13 @@
 
             this._$canvas = $('<canvas></canvas>');
             this._$canvas.css("top", 0);
-            this._$canvas.on("mousedown", this._mouseDown.bind(this));
-            this._$canvas.on("mousemove", this._mouseMove.bind(this));
+            this._$canvas.on("vmousedown", this._vmousedown.bind(this));
+            this._$canvas.on("vmousemove", this._vmousemove.bind(this));
 
             this._ctx = this._$canvas[0].getContext('2d');
             this._$container.children("div").append(this._$canvas);
 
-            $(window).bind('mouseup',  this._mouseUp.bind(this));
+            $(window).bind('vmouseup',  this._vmouseup.bind(this));
 
             /*$(window).bind('resize', this._resizeCanvas.bind(this));
             $(window).bind('resize', this._resizeCanvas.bind(this));*/
@@ -289,7 +289,7 @@
                     'z-index': '999'
                 });
         },
-        _mouseDown: function(e) {
+        _vmousedown: function(e) {
             this._hit = this._hitTestHandles(e);
             if(this._hit){
                 this._lastClick = Date.now();
@@ -299,7 +299,7 @@
             }
         },
 
-        _mouseUp: function(){
+        _vmouseup: function(){
            if (!$('#Dialog').dialog('isOpen')) {
             if(this._hover){
                 if(this._hit){
@@ -358,7 +358,7 @@
 
 
         },
-        _mouseMove: function(e){
+        _vmousemove: function(e){
             if(this._hover){
                 var hit = this._hitTestHandles(e);
                 if(hit){
@@ -378,7 +378,7 @@
                 this._clear();
             }
         },
-        _mouseOver: function (e) {
+        _tapdragover: function (e) {
 
             if (this._dragging) {
                 if (e.target.id() != this._dragging.id() || this._hit.handle.allowLoop) {
@@ -389,7 +389,7 @@
                 this._showHandles(this._hover);
             }
         },
-        _mouseOut: function(){
+        _tapdragout: function(){
             this._clear();
             this._hover = null;
         },
