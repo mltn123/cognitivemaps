@@ -1,0 +1,566 @@
+
+{{ block title }}
+    Ereignisse
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href={% static "style.css" %}>
+<style>
+      #logo{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        font-size: 18px;
+
+
+    }
+    img {
+      max-width: 15%;
+      height: auto;
+
+
+    }
+
+</style>
+<head>
+    <div id="logo">
+    	<img src="{{ static 'Logo_RUB_BLAU_rgb.jpg' }}"/>
+    </div>
+</head>
+
+<div class="alert alert-warning" role="alert">
+<p>Wählen Sie bitte mindestens weitere 2 Ereignisse die ihrer Meinung nach in einem direkten oder indirekten kausalen Zusammenhang zur Inflation stehen</p>
+    <p id="counter"></p>
+</div>
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-sm-8" >
+       <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+
+    <!-- for testing with local version of cytoscape.js -->
+    <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+
+
+    <script src={% static "CytoscapeEdgeEditation.js" %}></script>
+   <script src={% static "cytoscape-context-menus.js" %}></script>
+   <script src={% static "jquery-3.6.0.min.js" %}></script>
+   <script src={% static "jquery-ui.min.js" %}></script>
+      <link rel="stylesheet" href={% static "jquery-ui.css" %}>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
+
+		<script src="https://unpkg.com/layout-base/layout-base.js"></script>
+      		<script src="https://unpkg.com/avsdf-base/avsdf-base.js"></script>
+      <script src={% static "cytoscape-avsdf.js" %}></script>
+      <script src="https://cdn.jsdelivr.net/npm/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.min.js"></script>
+      <link rel="stylesheet" href={% static "style.css" %}>
+
+    <style>
+
+      body {
+        font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+        font-size: 14px;
+      }
+        #cy {
+          border: solid;
+          border-width: 1;
+          height: 100%;
+        }
+
+      h1 {
+        opacity: 0.5;
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+
+      .popper-handle {
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 20px;
+        z-index: 9999;
+      }
+  .cy-context-menus-cxt-menu {
+    display:none;
+    z-index: 1000;
+    position:absolute;
+    border:1px solid #A0A0A0;
+    padding: 0;
+    margin: 0;
+    width:auto;
+}
+
+.cy-context-menus-cxt-menuitem {
+    display:block;
+    width: 100%;
+    padding: 3px 20px;
+    position:relative;
+    margin:0;
+    background-color:#f8f8f8;
+    font-weight:normal;
+    font-size: 12px;
+    white-space:nowrap;
+    border: 0;
+    text-align: left;
+}
+
+.cy-context-menus-cxt-menuitem:enabled {
+    color: #000000;
+}
+
+.cy-context-menus-ctx-operation:focus {
+  outline: none;
+}
+
+.cy-context-menus-cxt-menuitem:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0B9BCD;
+    background-image: none;
+    cursor: pointer;
+}
+
+.cy-context-menus-cxt-menuitem[content]:before {
+    content:attr(content);
+}
+
+.cy-context-menus-divider {
+  border-bottom:1px solid #A0A0A0;
+}
+
+.cy-context-menus-submenu-indicator {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+    </style>
+
+    <script>
+
+
+$(function() {
+  var win = $(window);
+
+  win.resize(function() {
+    resize();
+  });
+
+  function resize() {
+    //console.log(win.height(), win.innerHeight());
+    $("#cy-container").height(win.innerHeight() - 130);
+    cy.resize();
+    cy.center()
+  }
+
+  setTimeout(resize, 0);
+        //let selection = js_vars.selection; //load previously selected events
+        let selection = ['Die Inflationsrate steigt'];
+        let length = selection.length
+        var demoNodes = [];
+        var demoEdges = [];
+        for (var i = 0; i < selection.length; i++) {
+            console.log("test")
+            console.log(length)
+            demoNodes.push({
+                data: {
+                    id: selection[i],
+                    name:selection[i],
+                    type: "node"
+                },
+                style: {
+                'backgroundColor': generateRandomColor(),
+                }
+            });
+        }
+
+
+
+        var cy = window.cy = cytoscape({
+          container: document.getElementById('cy'),
+         //wheelSensitivity: 0.2,
+
+
+
+
+          style: [
+
+            {
+              selector: 'node[name]',
+              style: {
+                'shape': 'round-diamond',
+                'content': 'data(name)',
+                'font-size': '8vw ',
+              }
+            },
+
+            {
+              selector: '[type="negative"]',
+              style: {
+                'curve-style': 'bezier',
+                'target-arrow-shape': 'triangle-backcurve',
+                'width': 1,
+                'line-color': '#b14e46',
+                'target-arrow-color': '#b14e46',
+                'width': function( ele ){ return ele.data('weight') * 0.5; },
+                'label': 'data(connector)',
+                "text-rotation": "autorotate",
+                "text-margin-x": "0px",
+                "text-margin-y": "data(weight)",
+                'font-size': '5vw',
+              },
+
+            },
+
+             {
+              selector: '[type="positive"]',
+              style: {
+                'curve-style': 'bezier',
+                'target-arrow-shape': 'triangle-backcurve',
+                'width': 1,
+                'line-color': '#7bae37',
+                'target-arrow-color': '#7bae37',
+                'width': function( ele ){ return ele.data('weight') * 0.5; },
+                'label': 'data(connector)',
+                "text-rotation": "autorotate",
+                "text-margin-x": "0px",
+                "text-margin-y": "data(weight)",
+                 'font-size': '5vw ',
+              },
+
+
+            },
+              {
+              selector: "edge[label]",
+              css: {
+
+              }
+              },
+
+            // some style for the extension
+
+            {
+              selector: '.eh-handle',
+              style: {
+                'background-color': 'red',
+                'width': 12,
+                'height': 12,
+                'shape': 'ellipse',
+                'overlay-opacity': 0,
+                'border-width': 12, // makes the handle easier to hit
+                'border-opacity': 0,
+              }
+            },
+
+            {
+              selector: '.eh-hover',
+              style: {
+                'background-color': 'red'
+              }
+            },
+
+            {
+              selector: '.eh-source',
+              style: {
+                'border-width': 2,
+                'border-color': 'blue'
+              }
+            },
+
+            {
+              selector: '.eh-target',
+              style: {
+                'border-width': 2,
+                'border-color': 'red'
+              }
+            },
+
+            {
+              selector: '.eh-preview, .eh-ghost-edge',
+              style: {
+                'background-color': 'red',
+                'line-color': 'red',
+                'target-arrow-color': 'red',
+                'source-arrow-color': 'red'
+              }
+            },
+                {
+                  selector: ".highlight",
+                  css: {
+                    "background-color": "red"
+                 }
+               },
+
+            {
+              selector: '.eh-ghost-edge.eh-preview-active',
+              style: {
+                'opacity': 0
+              }
+            },
+
+          ],
+
+          elements: {
+             nodes: demoNodes,
+          }
+        });
+
+
+        cy.minZoom( 1 )
+        cy.maxZoom( 2 )
+    var layout = cy.layout({
+                name: 'avsdf',
+                avoidOverlap: true,
+                refresh: 30,
+                // Whether to fit the network view after when done
+                fit: false,
+                // Padding on fit
+                padding: 10,
+                // Prevent the user grabbing nodes during the layout (usually with animate:true)
+                ungrabifyWhileSimulating: false,
+                // Type of layout animation. The option set is {'during', 'end', false}
+                animate: 'end',
+                // Duration for animate:end
+                animationDuration: 500,
+                // How apart the nodes are
+                nodeSeparation: 200
+
+    });
+
+
+    var handles = new CytoscapeEdgeEditation;
+    handles.init(cy);
+    handles.registerHandle({
+          positionX: "right",          //horizontal position of the handle  (left | center | right)
+          positionY: "center",        //vertical position of the handle  (top | center | bottom)
+          color: "#7bae37",             //color of the handle
+          type: "positive",                   //stored as data() attribute, can be used for styling
+          single: false,               //wheter only one edge of this type can start from same node (default false)
+          nodeTypeNames: ["node"],    //which types of nodes will contain this handle
+          noMultigraph: false,         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
+    });
+     handles.registerHandle({
+          positionX: "left",          //horizontal position of the handle  (left | center | right)
+          positionY: "center",        //vertical position of the handle  (top | center | bottom)
+          color: "#b14e46",             //color of the handle
+          type: "negative",                   //stored as data() attribute, can be used for styling
+          single: false,               //wheter only one edge of this type can start from same node (default false)
+          nodeTypeNames: ["node"],    //which types of nodes will contain this handle
+          noMultigraph: false         //whereter two nodes can't be connected with multiple edges (does not consider orientation)
+    });
+
+        cy.on('', 'edge', function (e) {
+            var ele = e.target;
+            console.log(ele)
+            weight = ele.data().weight
+            if (Math.abs(weight) <= 10){
+              if (weight >= 0) {
+                ele.data('weight', weight + 1)
+               }
+            }
+            if (Math.abs(weight) >= 10){
+                if (weight > 0) {
+                ele.data('weight', 1)
+               }
+              }
+            ele.style({ 'width': Math.abs(ele.data().weight) });
+        });
+
+
+        var contextMenu = cy.contextMenus({
+          evtType: 'cxttap',
+          menuItems: [
+            {
+              id: 'remove',
+              content: 'Beziehung Löschen',
+              tooltipText: 'Beziehung Löschen',
+              selector: 'edge',
+              onClickFunction: function (event) {
+                var target = event.target || event.cyTarget;
+                removed = target.remove();
+
+                contextMenu.showMenuItem('undo-last-remove');
+              },
+              hasTrailingDivider: true
+            },
+            {
+              id: 'undo-last-remove',
+              content: 'Löschen rückgängig machen',
+              selector: 'edge',
+              show: false,
+              coreAsWell: true,
+              onClickFunction: function (event) {
+                if (removed) {
+                  removed.restore();
+                }
+                contextMenu.hideMenuItem('undo-last-remove');
+              },
+              hasTrailingDivider: true
+            },
+          ]
+        });
+
+
+
+var allcheckboxes = $("input[type=checkbox]")
+var enabledSettings = [];
+allcheckboxes.change(function() {
+    var label = $('label[for="' + this.id + '"]').html();
+    if (this.checked) {
+        cy.add([{
+            group: "nodes",
+            data: {
+                    id: this.name,
+                    name: label,
+                    type: "node"
+                },
+                style: {
+                'backgroundColor': generateRandomColor(),
+                },
+
+                }
+    ])
+    }
+    if(!$(this).is(':checked'))  {
+    var j = cy.$id(this.name);
+    cy.$(j).remove();
+    }
+    cy.layout({ name: 'avsdf' }).run();
+
+});
+});
+
+    </script>
+<script>
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+
+}
+
+
+
+</script>
+  </head>
+
+
+  <body>
+
+
+<div id="Dialog" title="Konnektor Wählen">
+<style>#slider {
+    width: 50%;
+    float :left;
+}
+#Dialog > div:nth-child(2) > label:nth-child(5)
+{
+    float : left;
+}
+.ui-widget-header {
+  color: white;
+  font-weight: bold;
+}
+
+</style>
+ <div>
+     <label for="connectors"><b>Wählen Sie die Stärke der Verbindung.</b></label><br/>
+     <br>
+     <br>
+     <label>schwach</label><div id="slider" ></div><label>stark</label> <br><br>
+    </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+      {{ for choice in form}}
+      {{ if choice.name  != 'json' }}
+    <div class="col-sm-6">
+        <input type="checkbox" name="{{ choice.name }}" id="id_{{ choice.name }}">
+        {{ choice.label }}
+
+
+    </div>
+      <script>
+      formInputs.{{ choice.name }}.onchange = function () { checkboxes(); }
+      </script>
+      {{ else }}
+      <input type="hidden" name="{{ choice.name }}" id='{{ choice.name }}'>
+      {{ endif }}
+        {{ endfor }}
+<script>
+            $('input:checkbox[id="id_ev_Inflationsrate_steigt"]').prop('checked',true);
+            $('input:checkbox[id="id_ev_Inflationsrate_steigt"]').prop('disabled',true);
+            $("form").submit(function() {
+                $("input").removeAttr("disabled");
+            });
+</script>
+    <div class="col-16">
+  <div class="alert alert-warning" role="alert">   Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen.<br>
+      Dabei gibt es kein richtig oder falsch. Verlassen Sie sich einfach auf Ihr Bauchgefühl<br> Sie können die Ereignisse mit der Maus verschieben, und mit dem Mausrad die Zoomstufe anpassen. <br>
+<b>Wenn Sie mit Ihrem Netzwerk zufrieden sind, drücken Sie bitte auf "Weiter"</b>
+  </div>
+      <!-- graph : start -->
+          <div id="cy-container">
+            <div id="cy"></div>
+          </div>
+
+      <!-- graph : end -->
+
+    </div>
+
+  </div>
+    <button class="otree-btn-next btn btn-primary" name="next" value="True" onclick="saveFunction()">Weiter</button>
+</div>
+
+
+
+
+{{ formfield_errors 'json' }}
+
+
+  </body>
+
+
+</html>
+
+<script>
+function saveFunction(){
+     document.getElementById('json').value = JSON.stringify(cy.json());
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+
+
+<script>
+function checkboxes()
+{
+ document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / mindestens " + 2
+}
+</script>
+
+<br>
+
+
+
+
+{{ endblock }}

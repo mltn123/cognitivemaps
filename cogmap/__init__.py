@@ -65,7 +65,7 @@ class Player(BasePlayer):
     ev_Loehne_stagnieren = models.BooleanField(blank=True, label="Die Löhne stagnieren.")
     ev_Loehne_Gewerkschaft = models.BooleanField(blank=True, label="Die Gewerkschaft fördert höhere Löhne.")
     ev_Renten_steigen = models.BooleanField(blank=True, label="Die Renten steigen.")
-    ev_mineraloel_rekordgewinne = models.BooleanField(blank=True, label="Die Automobilhersteller machen Rekordgewinne.")
+    ev_mineraloel_rekordgewinne = models.BooleanField(blank=True, label="Die Mineralölkonzerne machen Rekordgewinne.")
     ev_CO2Steuer_einfuehrung = models.BooleanField(blank=True, label="Die Bundesregierung führt eine CO2-Steuer ein")
     ev_Lebensmittelpreise_steigen = models.BooleanField(blank=True, label="Die Lebensmittelpreise steigen.")
 
@@ -280,6 +280,36 @@ class Selection(Page):
             return "Wählen Sie mindestens 2 zusätzliche Ereignisse"
     pass
 
+class newCogMap(Page):
+    form_model = 'player'
+    form_fields = ['json']
+
+
+    @staticmethod
+    def get_form_fields(player):
+        import random
+        choices = C.CHOICES.copy()
+        rest = choices[1:]
+        random.shuffle(rest)
+        choices = [choices[0]] + rest
+        choices.append({'name': 'json', 'label': 'json'})
+        player.reihenfolge = ','.join(str(e['name']) for e in choices[:-1])
+        return [choice['name'] for choice in choices]
+
+
+
+    @staticmethod
+    def error_message(player, values):
+       # print('values is', values)
+        num_selected = 0
+        for choice in C.CHOICES:
+            if values[choice['name']]:
+                num_selected += 1
+        if num_selected < 3:
+            return "Wählen Sie mindestens 2 zusätzliche Ereignisse"
+    pass
+
+
 class CogMap(Page):
     def js_vars(player):
         selection = []
@@ -310,4 +340,4 @@ class Results(Page):
     pass
 
 #page_sequence = [Narratives]
-page_sequence = [Survey, Survey2, Survey3, Instructions, Selection, CogMap, Narratives]
+page_sequence = [Survey, Survey2, Survey3, Instructions,newCogMap, Narratives]
