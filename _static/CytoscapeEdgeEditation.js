@@ -137,11 +137,11 @@
             this._cy.on('mouseover tap', 'node', this._mouseOver.bind(this));
             this._cy.on('mouseout', 'node', this._mouseOut.bind(this));
 
-            this._$container.on('mouseout', function(e){
+            this._$container.on('mouseout tapdragout', function(e){
                 this._clear();
             }.bind(this));
 
-            this._$container.on('mouseover', function(e){
+            this._$container.on('mouseover tapdragover', function(e){
                 if(this._hover) {
                     this._mouseOver({target: this._hover});
                 }
@@ -169,6 +169,8 @@
             this._$canvas.css("top", 0);
             this._$canvas.on("mousedown taphold", this._mouseDown.bind(this));
             this._$canvas.on("mousemove tapdrag", this._mouseMove.bind(this));
+
+
 
             this._ctx = this._$canvas[0].getContext('2d');
             this._$container.children("div").append(this._$canvas);
