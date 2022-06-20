@@ -149,11 +149,11 @@
 
             this._cy.on("select", "node", this._redraw.bind(this))
 
-            this._cy.on("mousedown", "node", function(){
+            this._cy.on("mousedown tapstart", "node", function(){
                 this._nodeClicked = true;
             }.bind(this));
 
-            this._cy.on("mouseup", "node", function(){
+            this._cy.on("mouseup tapend", "node", function(){
                 this._nodeClicked = false;
             }.bind(this));
 
@@ -167,8 +167,8 @@
 
             this._$canvas = $('<canvas></canvas>');
             this._$canvas.css("top", 0);
-            this._$canvas.on("mousedown", this._mouseDown.bind(this));
-            this._$canvas.on("mousemove", this._mouseMove.bind(this));
+            this._$canvas.on("mousedown tapstart", this._mouseDown.bind(this));
+            this._$canvas.on("mousemove tapend", this._mouseMove.bind(this));
 
             this._ctx = this._$canvas[0].getContext('2d');
             this._$container.children("div").append(this._$canvas);
