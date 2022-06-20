@@ -28,7 +28,9 @@
 </head>
 
 <div class="alert alert-warning" role="alert">
-<p>Wählen Sie bitte mindestens weitere 2 Ereignisse die ihrer Meinung nach in einem direkten oder indirekten kausalen Zusammenhang zur Inflation stehen</p>
+<p>Wählen Sie bitte mindestens weitere 3 Ereignisse die ihrer Meinung nach in einem direkten oder indirekten kausalen Zusammenhang zur Inflation stehen.<br>
+ Sie können auch nach und nach weitere Ereignisse hinzufügen, indem Sie diese aus der Liste auswählen.
+</p>
     <p id="counter"></p>
 </div>
 
@@ -505,6 +507,7 @@ function generateRandomColor() {
     <div class="col-16">
   <div class="alert alert-warning" role="alert">   Verbinden Sie bitte die Ereignisse mit positiven (grünen) oder negativen (roten) Assoziationen.<br>
       Dabei gibt es kein richtig oder falsch. Verlassen Sie sich einfach auf Ihr Bauchgefühl<br> Sie können die Ereignisse mit der Maus verschieben, und mit dem Mausrad die Zoomstufe anpassen. <br>
+            <br> Weiterhin können Sie mit einem Linksklick auf die entspreche Beziehung, diese wieder Löschen. </br>
 <b>Wenn Sie mit Ihrem Netzwerk zufrieden sind, drücken Sie bitte auf "Weiter"</b>
   </div>
       <!-- graph : start -->
@@ -554,7 +557,7 @@ function saveFunction(){
 <script>
 function checkboxes()
 {
- document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / mindestens " + 2
+ document.getElementById("counter").innerHTML  = document.querySelectorAll('input[type="checkbox"]:checked').length -1 +  " / mindestens " + 3
 }
 </script>
 

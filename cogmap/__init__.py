@@ -41,6 +41,7 @@ class C(BaseConstants):
         dict(name='ev_GasEmbargo', label="Die Bundesregierung beschließt ein russisches Gas-Embargo."),
         dict(name='ev_RusUkrKonflikt', label="Der Russland Ukraine Konflikt verschärft sich."),
         dict(name='ev_Lockdown', label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19)."),
+        dict(name='ev_mikrochip',label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder."),
     ]
 
 
@@ -93,6 +94,7 @@ class Player(BasePlayer):
     ev_GasEmbargo = models.BooleanField(blank=True, label="Die Bundesregierung beschließt ein russisches Gas-Embargo.")
     ev_RusUkrKonflikt = models.BooleanField(blank=True, label="Der Russland Ukraine Konflikt verschärft sich.")
     ev_Lockdown = models.BooleanField(blank=True, label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19).")
+    ev_mikrochip = models.BooleanField(blank=True, label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder.")
 
     studienbereich = models.StringField(
         label = "Wählen Sie bitte Ihren Studienfachbereich",
@@ -306,7 +308,7 @@ class newCogMap(Page):
             if values[choice['name']]:
                 num_selected += 1
         if num_selected < 3:
-            return "Wählen Sie mindestens 2 zusätzliche Ereignisse"
+            return "Wählen Sie mindestens 3 zusätzliche Ereignisse"
     pass
 
 
@@ -336,8 +338,11 @@ class ResultsWaitPage(WaitPage):
     pass
 
 
-class Results(Page):
+class Danke(Page):
+    pass
+
+class Einfuehrung(Page):
     pass
 
 #page_sequence = [Narratives]
-page_sequence = [Survey, Survey2, Survey3, Instructions,newCogMap, Narratives]
+page_sequence = [Einfuehrung, Survey, Survey2, Survey3, Instructions,newCogMap, Narratives,Danke]

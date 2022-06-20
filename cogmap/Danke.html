@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+
+{{ block title }}
+    Vielen Dank
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href={% static "style.css" %}>
+<style>
+      #logo{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        font-size: 18px;
+
+
+    }
+    img {
+      max-width: 15%;
+      height: auto;
+
+
+    }
+</style>
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <div id="logo">
+    	<img src="{{ static 'Logo_RUB_BLAU_rgb.jpg' }}"/>
+    </div>
 </head>
-<body>
-$END$
-</body>
-</html>
+
+Vielen Dank für Ihre Teilnahme, sie können die Umfrage jetzt schließen.
+
+
+
+
+
+
+
+{{ endblock }}
