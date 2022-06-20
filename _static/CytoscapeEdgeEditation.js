@@ -134,8 +134,8 @@
             this._cy = cy;
             this._$container = $(cy.container());
 
-            this._cy.on('mouseover tap', 'node', this._mouseOver.bind(this));
-            this._cy.on('mouseout', 'node', this._mouseOut.bind(this));
+            this._cy.on('mouseover tapdragover', 'node', this._mouseOver.bind(this));
+            this._cy.on('mouseout tapdragout', 'node', this._mouseOut.bind(this));
 
             this._$container.on('mouseout tapdragout', function(e){
                 this._clear();
@@ -175,7 +175,7 @@
             this._ctx = this._$canvas[0].getContext('2d');
             this._$container.children("div").append(this._$canvas);
 
-            $(window).bind('mouseup tapend',  this._mouseUp.bind(this));
+            $(window).bind('mouseup',  this._mouseUp.bind(this));
 
             /*$(window).bind('resize', this._resizeCanvas.bind(this));
             $(window).bind('resize', this._resizeCanvas.bind(this));*/
