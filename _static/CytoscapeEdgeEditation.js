@@ -149,7 +149,7 @@
 
             this._cy.on("select", "node", this._redraw.bind(this))
 
-            this._cy.on("mousedown taphold", "node", function(){
+            this._cy.on("mousedown tap", "node", function(){
                 this._nodeClicked = true;
             }.bind(this));
 
