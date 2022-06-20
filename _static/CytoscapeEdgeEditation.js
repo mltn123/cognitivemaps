@@ -134,7 +134,7 @@
             this._cy = cy;
             this._$container = $(cy.container());
 
-            this._cy.on('mouseover tapdragover', 'node', this._mouseOver.bind(this));
+            this._cy.on('mouseover tap', 'node', this._mouseOver.bind(this));
             this._cy.on('mouseout tapdragout', 'node', this._mouseOut.bind(this));
 
             this._$container.on('mouseout tapdragout', function(e){
