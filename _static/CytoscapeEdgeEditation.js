@@ -167,7 +167,7 @@
 
             this._$canvas = $('<canvas></canvas>');
             this._$canvas.css("top", 0);
-            this._$canvas.on("mousedown dbltap", this._mouseDown.bind(this));
+            this._$canvas.on("mousedown taphold", this._mouseDown.bind(this));
             this._$canvas.on("mousemove tapdrag", this._mouseMove.bind(this));
 
             this._ctx = this._$canvas[0].getContext('2d');
