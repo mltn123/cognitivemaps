@@ -27,7 +27,7 @@
 </head>
 
 
-{{ if player.taetigkeit == "Ausbildung" or player.taetigkeit  == "Berufstätig" or player.taetigkeit  == "Duales / berufsbegleitendes Studium" or player.taetigkeit  == "keine Tätigkeit / Ruhestand" }}
+{{ if player.taetigkeit == "Ausbildung" or player.taetigkeit  == "Berufstätig" or player.taetigkeit  == "Duales / berufsbegleitendes Studium" or player.taetigkeit  == "keine Tätigkeit" or player.taetigkeit  == "Ruhestand"}}
     {{ formfield 'berufsfeld' label=berufsfeld_label }}
 {{ else }}
  {{ formfield 'studienbereich' }}

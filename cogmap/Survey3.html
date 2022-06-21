@@ -91,10 +91,10 @@
             {{ for field in form}}
                 item =  "{{ field.name}}"
                 var div = $('<div/>', { id: item + '_div', class: 'col-md-4'})
-                if(index < 5) {
+                if(index < 6) {
                     $('#target1').append(div)
                 }
-                if(index >=5 && index < 13) {
+                if(index >=6 && index < 13) {
                     $('#target2').append(div)
                 }
 <!--                if(index >= 13) {-->
@@ -106,7 +106,7 @@
                 if(index == 0) {
                   $('#target1').prepend("<p><b>" + "Welches Medium konsumieren Sie wie häufig?" + "</b></p>");
                  }
-                 if(index == 5) {
+                 if(index == 6) {
                    $('#target2').prepend("<p><b>" + "Welche Art von Nachrichten konsumieren Sie wie häufig?" + "</b></p>");
                  }
 <!--                 if(index == 13) {-->

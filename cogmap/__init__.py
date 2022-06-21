@@ -105,7 +105,7 @@ class Player(BasePlayer):
     )
 
     berufsfeld = models.StringField(
-        choices=["Bau, Architektur, Vermessung", "Dienstleistung", "Elektro", "Gesundheit", "IT, Computer",
+        choices=["Bauwesen, Architektur, Vermessung", "Dienstleistung", "Elektro","Forschung", "Gesundheit", "IT, Computer",
                  "Kunst, Kultur, Gestaltung", "Landwirtschaft, Natur, Umwelt", "Medien", "Metall, Maschinenbau",
                  "Naturwissenschaften","Produktion, Fertigung", "Soziales, Pädagogik", "Technik, Technologiefelder",
                  "Verkehr, Logistik", "Wirtschaft, Verwaltung", "Andere"], blank=True
@@ -118,7 +118,7 @@ class Player(BasePlayer):
 
     taetigkeit = models.StringField(
         label = "Wählen Sie bitte ihren momentanen Beschäftigungsstatus",
-        choices=["Ausbildung", "Studium", "Berufstätig", "Duales / berufsbegleitendes Studium", "keine Tätigkeit / Ruhestand"]
+        choices=["Ausbildung", "Studium", "Berufstätig", "Duales / berufsbegleitendes Studium", "keine Tätigkeit", "Ruhestand"]
     )
 
     bildungsgrad = models.StringField(
@@ -127,7 +127,7 @@ class Player(BasePlayer):
     )
 
 
-    nachrichten_regional = models.FloatField(blank=True, label="Regionalnachrichten")
+    nachrichten_regional = models.FloatField(blank=True, label="Regionalnachrichten / Lokalnachrichten")
     nachrichten_innenpolitik = models.FloatField(blank=True, label="Innenpolitik")
     nachrichten_aussenpolitik = models.FloatField(blank=True, label="Außenpolitik")
     nachrichten_wirtschaft = models.FloatField(blank=True, label="Wirtschaft")
@@ -135,8 +135,10 @@ class Player(BasePlayer):
     nachrichten_gesellschaft = models.FloatField(blank=True, label="Gesellschaft")
     nachrichten_wissenschaft = models.FloatField(blank=True, label="Wissenschaft")
     nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
+    nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
 
-    medium_zeitschriften = models.FloatField(blank=True, label="Zeitschriften in Papierform")
+    medium_zeitschriften = models.FloatField(blank=True, label="Printmedien (Zeitungen / Zeitschriften in Papierform)")
+    medium_onlinezeitschriften = models.FloatField(blank=True, label="Online Zeitungen / Zeitschriften")
     medium_radio = models.FloatField(blank=True, label="Radio")
     medium_fernsehen = models.FloatField(blank=True, label="Fernsehen")
     medium_internet = models.FloatField(blank=True, label="Internet")
@@ -195,7 +197,7 @@ class Survey2(Page):
             return dict(
                 berufsfeld_label='Wählen Sie bitte die Branche Ihres Dualen / berufsbegleitenden Studiums'
             )
-        elif player.field_maybe_none("taetigkeit") ==  "keine Tätigkeit / Ruhestand":
+        elif player.field_maybe_none("taetigkeit") ==  "keine Tätigkeit" or player.field_maybe_none("taetigkeit") == "Ruhestand":
             return dict(
                 berufsfeld_label='Wählen Sie bitte die Branche Ihres ehemaligen Berufes'
             )
@@ -217,7 +219,7 @@ class Survey2(Page):
         elif player.taetigkeit == "Berufstätig":
             if values['berufsfeld']  == "":
                 return 'Wählen Sie bitte die Branche Ihres Berufes'
-        elif player.taetigkeit == "keine Tätigkeit / Ruhestand":
+        elif player.taetigkeit == "keine Tätigkeit" or  player.taetigkeit == "Ruhestand" :
             if values['berufsfeld'] == "":
                 return 'Wählen Sie bitte die Branche Ihres ehemaligen Berufes'
     pass
@@ -226,7 +228,7 @@ class Survey2(Page):
 
 class Survey3(Page):
     form_model = 'player'
-    form_fields = ['medium_fernsehen','medium_internet','medium_radio', 'medium_sozial','medium_zeitschriften',
+    form_fields = ['medium_fernsehen','medium_internet','medium_radio', 'medium_sozial','medium_zeitschriften',"medium_onlinezeitschriften",
                    'nachrichten_aussenpolitik','nachrichten_finanzen', 'nachrichten_gesellschaft','nachrichten_innenpolitik',
                    'nachrichten_regional','nachrichten_umwelt','nachrichten_wirtschaft', 'nachrichten_wissenschaft',
                    'medien_bild','medien_faz','medien_focus','medien_spiegel','medien_sueddeutsche','medien_taz','medien_welt','medien_zeit',
