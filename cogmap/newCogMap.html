@@ -38,25 +38,18 @@
 <div class="container">
   <div class="row">
       <div class="col-sm-8" >
-       <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+          <script src={% static "cytoscape.min.js" %}></script>
+          <script src={% static "CytoscapeEdgeEditation.js" %}></script>
+          <script src={% static "cytoscape-context-menus.js" %}></script>
+          <script src={% static "jquery-3.6.0.min.js" %}></script>
+          <script src={% static "jquery-ui.min.js" %}></script>
+          <link rel="stylesheet" href={% static "jquery-ui.css" %}>
+<!--          <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>-->
 
-
-    <!-- for testing with local version of cytoscape.js -->
-    <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
-
-
-    <script src={% static "CytoscapeEdgeEditation.js" %}></script>
-   <script src={% static "cytoscape-context-menus.js" %}></script>
-   <script src={% static "jquery-3.6.0.min.js" %}></script>
-   <script src={% static "jquery-ui.min.js" %}></script>
-      <link rel="stylesheet" href={% static "jquery-ui.css" %}>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
-
-		<script src="https://unpkg.com/layout-base/layout-base.js"></script>
-      		<script src="https://unpkg.com/avsdf-base/avsdf-base.js"></script>
-      <script src={% static "cytoscape-avsdf.js" %}></script>
-      <script src="https://cdn.jsdelivr.net/npm/cytoscape-cose-bilkent@4.1.0/cytoscape-cose-bilkent.min.js"></script>
-      <link rel="stylesheet" href={% static "style.css" %}>
+          <script src={% static "layout-base.js" %}></script>
+          <script src={% static "avsdf-base.js" %}></script>
+          <script src={% static "cytoscape-avsdf.js" %}></script>
+          <link rel="stylesheet" href={% static "style.css" %}>
 
     <style>
 
@@ -164,8 +157,6 @@ $(function() {
         var demoNodes = [];
         var demoEdges = [];
         for (var i = 0; i < selection.length; i++) {
-            console.log("test")
-            console.log(length)
             demoNodes.push({
                 data: {
                     id: selection[i],
@@ -310,7 +301,7 @@ $(function() {
         });
 
 
-        cy.minZoom( 1 )
+        cy.minZoom( 0.5 )
         cy.maxZoom( 2 )
     var layout = cy.layout({
                 name: 'avsdf',

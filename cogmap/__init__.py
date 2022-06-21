@@ -123,7 +123,7 @@ class Player(BasePlayer):
 
     bildungsgrad = models.StringField(
         label = "Wählen Sie bitte Ihren höchsten Bildungsabschluss",
-        choices=["ohne Abschluss", "Hauptschulabschluss", "Realschulabschluss", "Fachabitur", "Abitur", "Bachelorabschluss", "Masterabschluss / Diplom",]
+        choices=["ohne Abschluss", "Hauptschulabschluss", "Realschulabschluss", "Fachabitur", "Abitur", "Bachelorabschluss", "Masterabschluss / Diplom", "Promotion"]
     )
 
 
@@ -234,7 +234,7 @@ class Survey3(Page):
     ]
     @staticmethod
     def error_message(player, values):
-        for i in ["medium_","nachrichten_","medien_"]:
+        for i in ["medium_","nachrichten_"]:
             filterdict =  dict(filter(lambda item: i in item[0], values.items()))
             if not any(filterdict.values()):
                 k = []
@@ -242,8 +242,6 @@ class Survey3(Page):
                     k = "ein Medium"
                 elif i == "nachrichten_":
                     k = "eine Art von Nachrichten"
-                elif i == "medien_":
-                    k = "eine Quelle"
                 return 'Geben Sie bitte mindestens ' + k + " an."
 
     pass

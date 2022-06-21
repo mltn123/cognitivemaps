@@ -73,14 +73,14 @@
     <div id="target2" class="row">
     </div>
 </div>
-<div class="alert alert-dark" role="alert">
-    <div id="target3" class="row">
-    </div>
-</div>
+<!--<div class="alert alert-dark" role="alert">-->
+<!--    <div id="target3" class="row">-->
+<!--    </div>-->
+<!--</div>-->
 
-<div id = quelle_andere_hide >
-{{formfield 'medien_andere'}}
-</div>
+<!--<div id = quelle_andere_hide >-->
+<!--{{formfield 'medien_andere'}}-->
+<!--</div>-->
 <script>
 
         $(document).ready(function (event) {
@@ -97,9 +97,9 @@
                 if(index >=5 && index < 13) {
                     $('#target2').append(div)
                 }
-                if(index >= 13) {
-                    $('#target3').append(div)
-                }
+<!--                if(index >= 13) {-->
+<!--                    $('#target3').append(div)-->
+<!--                }-->
                 slider[item] = new mgslider(item, 0, 10, 0.5);
                 slider[item].print(document.getElementById(item + "_div"))
                 div.prepend('{{field.label}}')
