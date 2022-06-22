@@ -164,6 +164,7 @@ class Player(BasePlayer):
     verschw_3 = models.FloatField()
     verschw_4 = models.FloatField()
     verschw_5 = models.FloatField()
+    verschw_6 = models.FloatField()
     wiss_1 = models.FloatField()
     wiss_2 = models.FloatField()
     wiss_3 = models.FloatField()
@@ -331,7 +332,7 @@ class CogMap(Page):
 
 class Narratives(Page):
     form_model = 'player'
-    form_fields = ['verschw_1','verschw_2','verschw_3','verschw_4','verschw_5','wiss_1','wiss_2','wiss_3']
+    form_fields = ['verschw_1','verschw_2','verschw_3','verschw_4','verschw_5','verschw_6','wiss_1','wiss_2','wiss_3']
     pass
 
 class ResultsWaitPage(WaitPage):
