@@ -70,23 +70,23 @@ class Player(BasePlayer):
     ev_CO2Steuer_einfuehrung = models.BooleanField(blank=True, label="Die Bundesregierung führt eine CO2-Steuer ein.")
     ev_Lebensmittelpreise_steigen = models.BooleanField(blank=True, label="Die Lebensmittelpreise steigen.")
 
-    ev_Energiepreise_steigen = models.BooleanField(blank=True, label="Die Energiepreise steigen")
+    ev_Energiepreise_steigen = models.BooleanField(blank=True, label="Die Energiepreise steigen.")
     ev_Corona_gespart  = models.BooleanField(blank=True, label="Die Menschen haben in der Coronazeit viel gespart.")
-    ev_Arbeitslosigkeit_steigt = models.BooleanField(blank=True, label="Die Arbeitslosigkeit ist gestiegen.")
+    ev_Arbeitslosigkeit_steigt = models.BooleanField(blank=True, label="Die Arbeitslosigkeit steigt.")
     ev_Arbeitslosengeld_erhoeht = models.BooleanField(blank=True, label="Die Regierung erhöht das Arbeitslosengeld.")
-    ev_Managergehälter_steigen = models.BooleanField(blank=True, label="Die Managergehälter sind gestiegen.")
+    ev_Managergehälter_steigen = models.BooleanField(blank=True, label="Die Managergehälter steigen.")
     ev_Verteidigungsetat_erhoeht = models.BooleanField(blank=True, label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen.")
     ev_Geld_verliert = models.BooleanField(blank=True, label="Das Geld verliert an Wert.")
-    ev_Dollarkurs_steigt = models.BooleanField(blank=True, label="Der Dollarkurs ist gestiegen.")
+    ev_Dollarkurs_steigt = models.BooleanField(blank=True, label="Der Dollarkurs steigt.")
     ev_Unwetter_schaden = models.BooleanField(blank=True, label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht.")
 
 
     ev_Borkenkaefer = models.BooleanField(blank=True, label="Die Borkenkäferplage hat große Teile des Waldes vernichtet.")
-    ev_Staatsverschuldung_steigt  = models.BooleanField(blank=True, label="Die Staatsverschuldung ist gestiegen.")
+    ev_Staatsverschuldung_steigt  = models.BooleanField(blank=True, label="Die Staatsverschuldung steigt.")
     ev_EU_greendeal = models.BooleanField(blank=True, label="Die EU investiert Milliarden in den Green Deal.")
     ev_Fluechtlinge = models.BooleanField(blank=True, label="Es kommen immer mehr Flüchtlinge nach Deutschland.")
     ev_Entsalzung = models.BooleanField(blank=True, label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten.")
-    ev_Dax_steigt = models.BooleanField(blank=True, label="Der Dax ist gestiegen.")
+    ev_Dax_steigt = models.BooleanField(blank=True, label="Der Dax steigt.")
     ev_Diaeten = models.BooleanField(blank=True, label="Der Bundestag erhöht die Diäten.")
     ev_Rohstoffe = models.BooleanField(blank=True, label="In Zukunft werden Rohstoffe knapp.")
 
@@ -135,7 +135,7 @@ class Player(BasePlayer):
     nachrichten_gesellschaft = models.FloatField(blank=True, label="Gesellschaft")
     nachrichten_wissenschaft = models.FloatField(blank=True, label="Wissenschaft")
     nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
-    nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
+
 
     medium_zeitschriften = models.FloatField(blank=True, label="Printmedien (Zeitungen / Zeitschriften in Papierform)")
     medium_onlinezeitschriften = models.FloatField(blank=True, label="Online Zeitungen / Zeitschriften")
