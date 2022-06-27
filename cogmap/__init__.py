@@ -16,32 +16,32 @@ class C(BaseConstants):
         dict(name='ev_Kreditzinsen', label="Die Banken erhöhen die Kreditzinsen."),
         dict(name='ev_Loehne_stagnieren', label="Die Löhne stagnieren."),
         dict(name='ev_Loehne_Gewerkschaft', label="Die Gewerkschaft fördert höhere Löhne."),
-        dict(name='ev_Renten_steigen', label="Die Renten steigen."),
-        dict(name='ev_mineraloel_rekordgewinne', label="Die Mineralölkonzerne machen Rekordgewinne."),
-        dict(name='ev_CO2Steuer_einfuehrung', label="Die Bundesregierung führt eine CO2-Steuer ein"),
-        dict(name='ev_Lebensmittelpreise_steigen', label="Die Lebensmittelpreise steigen."),
-        dict(name='ev_Energiepreise_steigen', label="Die Energiepreise steigen"),
-        dict(name='ev_Corona_gespart', label="Die Menschen haben in der Coronazeit viel gespart."),
-        dict(name='ev_Arbeitslosigkeit_steigt', label="Die Arbeitslosigkeit ist gestiegen."),
-        dict(name='ev_Arbeitslosengeld_erhoeht', label="Die Regierung erhöht das Arbeitslosengeld."),
-        dict(name='ev_Managergehälter_steigen', label="Die Managergehälter sind gestiegen."),
-        dict(name='ev_Verteidigungsetat_erhoeht', label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen"),
-        dict(name='ev_Geld_verliert', label="Das Geld verliert an Wert."),
-        dict(name='ev_Dollarkurs_steigt', label="Der Dollarkurs ist gestiegen."),
-        dict(name='ev_Unwetter_schaden', label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht."),
-        dict(name='ev_Borkenkaefer', label="Die Borkenkäferplage hat große Teile des Waldes vernichtet."),
-        dict(name='ev_Staatsverschuldung_steigt', label="Die Staatsverschuldung ist gestiegen."),
-        dict(name='ev_EU_greendeal', label="Die EU investiert Milliarden in den Green Deal."),
-        dict(name='ev_Fluechtlinge', label="Es kommen immer mehr Flüchtlinge nach Deutschland."),
-        dict(name='ev_Entsalzung', label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten."),
-        dict(name='ev_Dax_steigt', label="Der Dax ist gestiegen."),
-        dict(name='ev_Diaeten', label="Der Bundestag erhöht die Diäten."),
-        dict(name='ev_Rohstoffe', label="In Zukunft werden Rohstoffe knapp."),
-        dict(name='ev_Mieten', label="Die Mieten steigen."),
-        dict(name='ev_GasEmbargo', label="Die Bundesregierung beschließt ein russisches Gas-Embargo."),
-        dict(name='ev_RusUkrKonflikt', label="Der Russland Ukraine Konflikt verschärft sich."),
-        dict(name='ev_Lockdown', label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19)."),
-        dict(name='ev_mikrochip',label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder."),
+        # dict(name='ev_Renten_steigen', label="Die Renten steigen."),
+        # dict(name='ev_mineraloel_rekordgewinne', label="Die Mineralölkonzerne machen Rekordgewinne."),
+        # dict(name='ev_CO2Steuer_einfuehrung', label="Die Bundesregierung führt eine CO2-Steuer ein"),
+        # dict(name='ev_Lebensmittelpreise_steigen', label="Die Lebensmittelpreise steigen."),
+        # dict(name='ev_Energiepreise_steigen', label="Die Energiepreise steigen"),
+        # dict(name='ev_Corona_gespart', label="Die Menschen haben in der Coronazeit viel gespart."),
+        # dict(name='ev_Arbeitslosigkeit_steigt', label="Die Arbeitslosigkeit ist gestiegen."),
+        # dict(name='ev_Arbeitslosengeld_erhoeht', label="Die Regierung erhöht das Arbeitslosengeld."),
+        # dict(name='ev_Managergehälter_steigen', label="Die Managergehälter sind gestiegen."),
+        # dict(name='ev_Verteidigungsetat_erhoeht', label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen"),
+        # dict(name='ev_Geld_verliert', label="Das Geld verliert an Wert."),
+        # dict(name='ev_Dollarkurs_steigt', label="Der Dollarkurs ist gestiegen."),
+        # dict(name='ev_Unwetter_schaden', label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht."),
+        # dict(name='ev_Borkenkaefer', label="Die Borkenkäferplage hat große Teile des Waldes vernichtet."),
+        # dict(name='ev_Staatsverschuldung_steigt', label="Die Staatsverschuldung ist gestiegen."),
+        # dict(name='ev_EU_greendeal', label="Die EU investiert Milliarden in den Green Deal."),
+        # dict(name='ev_Fluechtlinge', label="Es kommen immer mehr Flüchtlinge nach Deutschland."),
+        # dict(name='ev_Entsalzung', label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten."),
+        # dict(name='ev_Dax_steigt', label="Der Dax ist gestiegen."),
+        # dict(name='ev_Diaeten', label="Der Bundestag erhöht die Diäten."),
+        # dict(name='ev_Rohstoffe', label="In Zukunft werden Rohstoffe knapp."),
+        # dict(name='ev_Mieten', label="Die Mieten steigen."),
+        # dict(name='ev_GasEmbargo', label="Die Bundesregierung beschließt ein russisches Gas-Embargo."),
+        # dict(name='ev_RusUkrKonflikt', label="Der Russland Ukraine Konflikt verschärft sich."),
+        # dict(name='ev_Lockdown', label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19)."),
+        # dict(name='ev_mikrochip',label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder."),
     ]
 
 
@@ -60,41 +60,41 @@ class Player(BasePlayer):
     medien_andere = models.StringField(label="Andere Quelle", blank=True)
 
     alter = models.IntegerField(label="Ihr Alter")
-    ev_Leitzins_erhoeht = models.BooleanField(blank=True, label= "Die Zentralbank erhöht den Leitzins.")
-    ev_Inflationsrate_steigt = models.BooleanField(blank=True, label="Die Inflationsrate steigt.")
-    ev_Kreditzinsen = models.BooleanField(blank=True, label="Die Banken erhöhen die Kreditzinsen.")
-    ev_Loehne_stagnieren = models.BooleanField(blank=True, label="Die Löhne stagnieren.")
-    ev_Loehne_Gewerkschaft = models.BooleanField(blank=True, label="Die Gewerkschaft fördert höhere Löhne.")
-    ev_Renten_steigen = models.BooleanField(blank=True, label="Die Renten steigen.")
-    ev_mineraloel_rekordgewinne = models.BooleanField(blank=True, label="Die Mineralölkonzerne machen Rekordgewinne.")
-    ev_CO2Steuer_einfuehrung = models.BooleanField(blank=True, label="Die Bundesregierung führt eine CO2-Steuer ein.")
-    ev_Lebensmittelpreise_steigen = models.BooleanField(blank=True, label="Die Lebensmittelpreise steigen.")
-
-    ev_Energiepreise_steigen = models.BooleanField(blank=True, label="Die Energiepreise steigen.")
-    ev_Corona_gespart  = models.BooleanField(blank=True, label="Die Menschen haben in der Coronazeit viel gespart.")
-    ev_Arbeitslosigkeit_steigt = models.BooleanField(blank=True, label="Die Arbeitslosigkeit steigt.")
-    ev_Arbeitslosengeld_erhoeht = models.BooleanField(blank=True, label="Die Regierung erhöht das Arbeitslosengeld.")
-    ev_Managergehälter_steigen = models.BooleanField(blank=True, label="Die Managergehälter steigen.")
-    ev_Verteidigungsetat_erhoeht = models.BooleanField(blank=True, label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen.")
-    ev_Geld_verliert = models.BooleanField(blank=True, label="Das Geld verliert an Wert.")
-    ev_Dollarkurs_steigt = models.BooleanField(blank=True, label="Der Dollarkurs steigt.")
-    ev_Unwetter_schaden = models.BooleanField(blank=True, label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht.")
-
-
-    ev_Borkenkaefer = models.BooleanField(blank=True, label="Die Borkenkäferplage hat große Teile des Waldes vernichtet.")
-    ev_Staatsverschuldung_steigt  = models.BooleanField(blank=True, label="Die Staatsverschuldung steigt.")
-    ev_EU_greendeal = models.BooleanField(blank=True, label="Die EU investiert Milliarden in den Green Deal.")
-    ev_Fluechtlinge = models.BooleanField(blank=True, label="Es kommen immer mehr Flüchtlinge nach Deutschland.")
-    ev_Entsalzung = models.BooleanField(blank=True, label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten.")
-    ev_Dax_steigt = models.BooleanField(blank=True, label="Der Dax steigt.")
-    ev_Diaeten = models.BooleanField(blank=True, label="Der Bundestag erhöht die Diäten.")
-    ev_Rohstoffe = models.BooleanField(blank=True, label="In Zukunft werden Rohstoffe knapp.")
-
-    ev_Mieten = models.BooleanField(blank=True, label="Die Mieten steigen.")
-    ev_GasEmbargo = models.BooleanField(blank=True, label="Die Bundesregierung beschließt ein russisches Gas-Embargo.")
-    ev_RusUkrKonflikt = models.BooleanField(blank=True, label="Der Russland Ukraine Konflikt verschärft sich.")
-    ev_Lockdown = models.BooleanField(blank=True, label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19).")
-    ev_mikrochip = models.BooleanField(blank=True, label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder.")
+    ev_Leitzins_erhoeht = models.BooleanField(blank=True, label= "Das Ozonloch wächst.")
+    ev_Inflationsrate_steigt = models.BooleanField(blank=True, label="Der Klimawandel beschleunigt sich.")
+    ev_Kreditzinsen = models.BooleanField(blank=True, label="Die Anzahl an Elektroautos steigt.")
+    ev_Loehne_stagnieren = models.BooleanField(blank=True, label="Es kommt vermehrt zu Unwetterkatastrophen")
+    ev_Loehne_Gewerkschaft = models.BooleanField(blank=True, label="China steigt aus dem Pariser Klimaabkommen aus.")
+    # ev_Renten_steigen = models.BooleanField(blank=True, label="Die Renten steigen.")
+    # ev_mineraloel_rekordgewinne = models.BooleanField(blank=True, label="Die Mineralölkonzerne machen Rekordgewinne.")
+    # ev_CO2Steuer_einfuehrung = models.BooleanField(blank=True, label="Die Bundesregierung führt eine CO2-Steuer ein.")
+    # ev_Lebensmittelpreise_steigen = models.BooleanField(blank=True, label="Die Lebensmittelpreise steigen.")
+    #
+    # ev_Energiepreise_steigen = models.BooleanField(blank=True, label="Die Energiepreise steigen.")
+    # ev_Corona_gespart  = models.BooleanField(blank=True, label="Die Menschen haben in der Coronazeit viel gespart.")
+    # ev_Arbeitslosigkeit_steigt = models.BooleanField(blank=True, label="Die Arbeitslosigkeit steigt.")
+    # ev_Arbeitslosengeld_erhoeht = models.BooleanField(blank=True, label="Die Regierung erhöht das Arbeitslosengeld.")
+    # ev_Managergehälter_steigen = models.BooleanField(blank=True, label="Die Managergehälter steigen.")
+    # ev_Verteidigungsetat_erhoeht = models.BooleanField(blank=True, label="Die Regierung hat angekündigt, den Verteidigungsetat zu erhöhen.")
+    # ev_Geld_verliert = models.BooleanField(blank=True, label="Das Geld verliert an Wert.")
+    # ev_Dollarkurs_steigt = models.BooleanField(blank=True, label="Der Dollarkurs steigt.")
+    # ev_Unwetter_schaden = models.BooleanField(blank=True, label="Die Unwetter im Ahrtal haben Milliardenschäden verursacht.")
+    #
+    #
+    # ev_Borkenkaefer = models.BooleanField(blank=True, label="Die Borkenkäferplage hat große Teile des Waldes vernichtet.")
+    # ev_Staatsverschuldung_steigt  = models.BooleanField(blank=True, label="Die Staatsverschuldung steigt.")
+    # ev_EU_greendeal = models.BooleanField(blank=True, label="Die EU investiert Milliarden in den Green Deal.")
+    # ev_Fluechtlinge = models.BooleanField(blank=True, label="Es kommen immer mehr Flüchtlinge nach Deutschland.")
+    # ev_Entsalzung = models.BooleanField(blank=True, label="Deutschland investiert in eine Meerwasserentsalzungsanlage in Ägypten.")
+    # ev_Dax_steigt = models.BooleanField(blank=True, label="Der Dax steigt.")
+    # ev_Diaeten = models.BooleanField(blank=True, label="Der Bundestag erhöht die Diäten.")
+    # ev_Rohstoffe = models.BooleanField(blank=True, label="In Zukunft werden Rohstoffe knapp.")
+    #
+    # ev_Mieten = models.BooleanField(blank=True, label="Die Mieten steigen.")
+    # ev_GasEmbargo = models.BooleanField(blank=True, label="Die Bundesregierung beschließt ein russisches Gas-Embargo.")
+    # ev_RusUkrKonflikt = models.BooleanField(blank=True, label="Der Russland Ukraine Konflikt verschärft sich.")
+    # ev_Lockdown = models.BooleanField(blank=True, label="Die Bundesregierung beschließt einen weiteren Lockdown (Affenpocken / COVID-19).")
+    # ev_mikrochip = models.BooleanField(blank=True, label="Eine Fabrik zur Herstellung von Mikrochips brennt nieder.")
 
     studienbereich = models.StringField(
         label = "Wählen Sie bitte Ihren Studienfachbereich",
@@ -127,22 +127,38 @@ class Player(BasePlayer):
     )
 
 
-    nachrichten_regional = models.FloatField(blank=True, label="Regionalnachrichten / Lokalnachrichten")
-    nachrichten_innenpolitik = models.FloatField(blank=True, label="Innenpolitik")
-    nachrichten_aussenpolitik = models.FloatField(blank=True, label="Außenpolitik")
-    nachrichten_wirtschaft = models.FloatField(blank=True, label="Wirtschaft")
-    nachrichten_finanzen = models.FloatField(blank=True, label="Finanzen")
-    nachrichten_gesellschaft = models.FloatField(blank=True, label="Gesellschaft")
-    nachrichten_wissenschaft = models.FloatField(blank=True, label="Wissenschaft")
-    nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
+    # nachrichten_regional = models.FloatField(blank=True, label="Regionalnachrichten / Lokalnachrichten")
+    # nachrichten_innenpolitik = models.FloatField(blank=True, label="Innenpolitik")
+    # nachrichten_aussenpolitik = models.FloatField(blank=True, label="Außenpolitik")
+    # nachrichten_wirtschaft = models.FloatField(blank=True, label="Wirtschaft")
+    # nachrichten_finanzen = models.FloatField(blank=True, label="Finanzen")
+    # nachrichten_gesellschaft = models.FloatField(blank=True, label="Gesellschaft")
+    # nachrichten_wissenschaft = models.FloatField(blank=True, label="Wissenschaft")
+    # nachrichten_umwelt = models.FloatField(blank=True, label="Umwelt und Nachhaltigkeit")
+
+    nachrichten_regional =  models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label ="Regionalnachrichten / Lokalnachrichten")
+    nachrichten_innenpolitik = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Innenpolitik")
+    nachrichten_aussenpolitik = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Außenpolitik")
+    nachrichten_wirtschaft = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Wirtschaft")
+    nachrichten_finanzen = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Finanzen")
+    nachrichten_gesellschaft = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Gesellschaft / Soziales")
+    nachrichten_wissenschaft = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Wissenschaft")
+    nachrichten_umwelt = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Umwelt und Nachhaltigkeit")
 
 
-    medium_zeitschriften = models.FloatField(blank=True, label="Printmedien (Zeitungen / Zeitschriften in Papierform)")
-    medium_onlinezeitschriften = models.FloatField(blank=True, label="Online Zeitungen / Zeitschriften")
-    medium_radio = models.FloatField(blank=True, label="Radio")
-    medium_fernsehen = models.FloatField(blank=True, label="Fernsehen")
-    medium_internet = models.FloatField(blank=True, label="Internet")
-    medium_sozial = models.FloatField(blank=True, label="Soziale Medien")
+    # medium_zeitschriften = models.FloatField(blank=True, label="Printmedien (Zeitungen / Zeitschriften in Papierform)")
+    # medium_onlinezeitschriften = models.FloatField(blank=True, label="Online Zeitungen / Zeitschriften")
+    # medium_radio = models.FloatField(blank=True, label="Radio")
+    # medium_fernsehen = models.FloatField(blank=True, label="Fernsehen")
+    # medium_internet = models.FloatField(blank=True, label="Internet")
+    # medium_sozial = models.FloatField(blank=True, label="Soziale Medien")
+
+    medium_zeitschriften = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Printmedien (Zeitungen / Zeitschriften in Papierform)")
+    medium_onlinezeitschriften = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Online Zeitungen / Zeitschriften")
+    medium_radio = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"],label="Radio")
+    medium_fernsehen = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Fernsehen")
+    medium_internet = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Internet")
+    medium_sozial = models.StringField(widget=widgets.RadioSelectHorizontal, choices=["Weniger als einmal im Monat", "einmal im Monat", "einmal in der Woche", "Täglich", "mehrmals Täglich"], label="Soziale Medien")
 
     medien_bild = models.FloatField(blank=True, label="Bild / Bild.de / Bild TV")
     medien_focus = models.FloatField(blank=True, label="FOCUS / FOCUS Online")
@@ -235,17 +251,17 @@ class Survey3(Page):
                    'medien_bild','medien_faz','medien_focus','medien_spiegel','medien_sueddeutsche','medien_taz','medien_welt','medien_zeit',
                    'medien_prosieben','medien_rtl','medien_tagesschau','medien_messenger','medien_socialmedia','medien_andere'
     ]
-    @staticmethod
-    def error_message(player, values):
-        for i in ["medium_","nachrichten_"]:
-            filterdict =  dict(filter(lambda item: i in item[0], values.items()))
-            if not any(filterdict.values()):
-                k = []
-                if i == "medium_":
-                    k = "ein Medium"
-                elif i == "nachrichten_":
-                    k = "eine Art von Nachrichten"
-                return 'Geben Sie bitte mindestens ' + k + " an."
+    # @staticmethod
+    # def error_message(player, values):
+    #     for i in ["medium_","nachrichten_"]:
+    #         filterdict =  dict(filter(lambda item: i in item[0], values.items()))
+    #         if not any(filterdict.values()):
+    #             k = []
+    #             if i == "medium_":
+    #                 k = "ein Medium"
+    #             elif i == "nachrichten_":
+    #                 k = "eine Art von Nachrichten"
+    #             return 'Geben Sie bitte mindestens ' + k + " an."
 
     pass
 

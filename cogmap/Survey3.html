@@ -57,74 +57,33 @@
 
 <div class="alert alert-warning" role="alert">
 
-    <p> Bitte geben Sie die Häufigkeit Ihres Medienkonsums unter den folgenden Kategorien an. </p>
-    <p> Nicht konsumierte Medien können Sie entweder Ignorieren, oder auf null setzen.<br>
-     <b>Treffen Sie jedoch bitte mindestens eine Wahl pro Fragekategorie.</b></p>
-    <p> <b> 0 bedeutet "gar kein Konsum" , 10 bedeutet "mehrfacher täglicher Konsum". </b></p>
-    <p><b>Klicken Sie auf die blaue Leiste, um den Regler zu enthüllen.</b></p>
+    <p> Bitte geben Sie die Häufigkeit Ihres Medienkonsums unter den folgenden Kategorien an. </p><br>
+    <p> Danach klicken Sie bitte auf „Weiter“ </p>
+
 
 </div>
 
 <div class="alert alert-dark" role="alert">
-    <div id="target1" class="row">
-    </div>
+<b> Nachrichtentyp </b>
+{{formfield 'nachrichten_regional'}}
+{{formfield 'nachrichten_innenpolitik'}}
+{{formfield 'nachrichten_aussenpolitik'}}
+{{formfield 'nachrichten_wirtschaft'}}
+{{formfield 'nachrichten_finanzen'}}
+{{formfield 'nachrichten_gesellschaft'}}
+{{formfield 'nachrichten_innenpolitik'}}
+{{formfield 'nachrichten_wissenschaft'}}
+{{formfield 'nachrichten_umwelt'}}
 </div>
 <div class="alert alert-dark" role="alert">
-    <div id="target2" class="row">
-    </div>
+<b> Nachrichtenmedium </b>
+{{formfield 'medium_zeitschriften'}}
+{{formfield 'medium_onlinezeitschriften'}}
+{{formfield 'medium_radio'}}
+{{formfield 'medium_fernsehen'}}
+{{formfield 'medium_internet'}}
+{{formfield 'medium_sozial'}}
 </div>
-<!--<div class="alert alert-dark" role="alert">-->
-<!--    <div id="target3" class="row">-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div id = quelle_andere_hide >-->
-<!--{{formfield 'medien_andere'}}-->
-<!--</div>-->
-<script>
-
-        $(document).ready(function (event) {
-            var array = []
-            var description = []
-            var index = 0
-            var slider = []
-            {{ for field in form}}
-                item =  "{{ field.name}}"
-                var div = $('<div/>', { id: item + '_div', class: 'col-md-4'})
-                if(index < 6) {
-                    $('#target1').append(div)
-                }
-                if(index >=6 && index < 13) {
-                    $('#target2').append(div)
-                }
-<!--                if(index >= 13) {-->
-<!--                    $('#target3').append(div)-->
-<!--                }-->
-                slider[item] = new mgslider(item, 0, 10, 0.5);
-                slider[item].print(document.getElementById(item + "_div"))
-                div.prepend('{{field.label}}')
-                if(index == 0) {
-                  $('#target1').prepend("<p><b>" + "Welches Medium konsumieren Sie wie häufig?" + "</b></p>");
-                 }
-                 if(index == 6) {
-                   $('#target2').prepend("<p><b>" + "Welche Art von Nachrichten konsumieren Sie wie häufig?" + "</b></p>");
-                 }
-<!--                 if(index == 13) {-->
-<!--                   $('#target3').prepend("<p><b>" + "Aus welchen Quellen beziehen Sie wie häufig Ihre Nachrichten? " + "</b></p>");-->
-<!--                 }-->
-                 index = index + 1
-                 {{ endfor }}
-    });git
-
-
-
-
-//disable ScrollWheel for Sliders
-document.addEventListener("wheel", function(event){
-    if(document.activeElement.type === "range"){
-        document.activeElement.blur();
-    }
-});
 
 
  </script>
