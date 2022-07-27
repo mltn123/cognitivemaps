@@ -21,7 +21,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-oTree Survey used to collect cognitive Maps of participants.
+oTree Survey used to collect cognitive maps of participants.
 
 
 
