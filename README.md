@@ -36,7 +36,7 @@ oTree Survey used to collect cognitive maps of participants.
 * [[oTree]][oTree-url]
 * [[Bootstrap]][Bootstrap-url]
 * [[JQuery]][JQuery-url]
-* [[Cytoscape.js][Cytoscape-url]
+* [[Cytoscape.js]][Cytoscape-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
