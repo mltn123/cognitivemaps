@@ -23,6 +23,8 @@
 
 oTree Survey used to collect cognitive maps of participants.
 
+[[Demo]][demo-url]
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -74,3 +76,4 @@ Distributed under the MIT License.
 [oTree-url]: https://otree.readthedocs.io/
 [Bootstrap-url]: https://getbootstrap.com/
 [Cytoscape-url]: https://js.cytoscape.org/
+[demo-url]: https://cognitivemaps.herokuapp.com/demo
