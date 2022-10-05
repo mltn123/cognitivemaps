@@ -25,6 +25,8 @@ oTree Survey used to collect cognitive maps of participants.
 
 [[Demo]][demo-url]
 
+Demo is available until November 28th, 2022
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
